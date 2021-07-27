@@ -145,7 +145,7 @@ namespace Trident.BL
         {
             try
             {
-                pSqlParameter = new SqlParameter[6];
+                pSqlParameter = new SqlParameter[8];
 
 
                 pSqlParameter[0] = new SqlParameter("@PointId", SqlDbType.Int);
@@ -172,6 +172,15 @@ namespace Trident.BL
                 pSqlParameter[5].Direction = ParameterDirection.Input;
                 pSqlParameter[5].Value = objCameraBO.CreatedDate;
 
+                pSqlParameter[6] = new SqlParameter("@Latitude", SqlDbType.Float);
+                pSqlParameter[6].Direction = ParameterDirection.Input;
+                pSqlParameter[6].Value = objCameraBO.Latitude;
+
+                pSqlParameter[7] = new SqlParameter("@Longitude", SqlDbType.Float);
+                pSqlParameter[7].Direction = ParameterDirection.Input;
+                pSqlParameter[7].Value = objCameraBO.Longitude;
+
+
 
                 sSql = "usp_Camera_Insert";
                 DataTable dtResult = new DataTable();
@@ -196,7 +205,7 @@ namespace Trident.BL
         {
             try
             {
-                pSqlParameter = new SqlParameter[7];
+                pSqlParameter = new SqlParameter[9];
 
                 pSqlParameter[0] = new SqlParameter("@Id", SqlDbType.Int);
                 pSqlParameter[0].Direction = ParameterDirection.Input;
@@ -218,6 +227,8 @@ namespace Trident.BL
                 pSqlParameter[4].Direction = ParameterDirection.Input;
                 pSqlParameter[4].Value = objCameraBO.IpAddress;
 
+
+
                 pSqlParameter[5] = new SqlParameter("@LastModifiedBy", SqlDbType.Int);
                 pSqlParameter[5].Direction = ParameterDirection.Input;
                 pSqlParameter[5].Value = objCameraBO.LastModifiedBy;
@@ -225,6 +236,15 @@ namespace Trident.BL
                 pSqlParameter[6] = new SqlParameter("@LastModifiedDate", SqlDbType.DateTime);
                 pSqlParameter[6].Direction = ParameterDirection.Input;
                 pSqlParameter[6].Value = objCameraBO.LastModifiedDate;
+
+                pSqlParameter[7] = new SqlParameter("@Latitude", SqlDbType.Float);
+                pSqlParameter[7].Direction = ParameterDirection.Input;
+                pSqlParameter[7].Value = objCameraBO.Latitude;
+
+                pSqlParameter[8] = new SqlParameter("@Longitude", SqlDbType.Float);
+                pSqlParameter[8].Direction = ParameterDirection.Input;
+                pSqlParameter[8].Value = objCameraBO.Longitude;
+
 
 
                 sSql = "usp_Camera_Update";

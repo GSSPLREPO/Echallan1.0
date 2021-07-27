@@ -160,6 +160,8 @@ namespace Trident.ClientUI
                 objCameraBo.Name = txtName.Text;
                 objCameraBo.Make = txtMake.Text;
                 objCameraBo.IpAddress = txtIp.Text;
+                objCameraBo.Latitude = Convert.ToDouble(txtLatitude.Text);
+                objCameraBo.Longitude = Convert.ToDouble(txtLongitude.Text);
 
                 int intCameraId = 0;
                 if (ViewState["Mode"].ToString() == "Save")
@@ -330,6 +332,8 @@ namespace Trident.ClientUI
                             txtName.Text = dtResult.Rows[0][CameraBO.CAMERA_Name].ToString();
                             txtMake.Text = dtResult.Rows[0][CameraBO.CAMERA_Make].ToString();
                             txtIp.Text = dtResult.Rows[0][CameraBO.CAMERA_IpAddress].ToString();
+                            txtLatitude.Text= dtResult.Rows[0][CameraBO.CAMERA_Latitude].ToString();
+                            txtLongitude.Text = dtResult.Rows[0][CameraBO.CAMERA_Logitude].ToString();
                             ControlVisibility(false, true);
                         }
                     }

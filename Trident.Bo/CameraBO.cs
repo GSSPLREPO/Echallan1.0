@@ -13,6 +13,9 @@ namespace Trident.Bo
         public const string CAMERA_Name = "Name";
         public const string CAMERA_Make = "Make";
         public const string CAMERA_IpAddress = "IpAddress";
+        public const string CAMERA_Latitude = "Latitude";
+        public const string CAMERA_Logitude = "Longitude";
+
         public const string CAMERA_ISDELETED = "IsDeleted";
         public const string CAMERA_CREATEDBY = "CreatedBy";
         public const string CAMERA_CREATEDDATE = "CreatedDate";
@@ -20,11 +23,17 @@ namespace Trident.Bo
         public const string CAMERA_LASTMODIFIEDDATE = "LastModifiedDate";
 
 
+
+
         private int intId = 0;
         private int intPointId = 0;
         private string strName = string.Empty;
         private string strMake = string.Empty;
         private string strIpAddress = string.Empty;
+
+        private double ftLatitude = 0;
+        private double ftLongitude = 0;
+
         private int intIsDeleted = 0;
         private int intCreatedBy = 0;
         private DateTime dtCreatedDate;
@@ -57,6 +66,18 @@ namespace Trident.Bo
             get { return strIpAddress; }
             set { strIpAddress = value; }
         }
+
+        public double Latitude
+        {
+            get { return ftLatitude; }
+            set { ftLatitude = value; }
+        }
+        public double Longitude
+        {
+            get { return ftLongitude; }
+            set { ftLongitude = value; }
+        }
+
         public int IsDeleted
         {
             get { return intIsDeleted; }

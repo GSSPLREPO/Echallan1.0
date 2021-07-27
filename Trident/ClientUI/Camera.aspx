@@ -103,7 +103,7 @@
                     </div>
                     <div class="row">
                         <div class="form-group">
-                            
+
                             <label class="col-md-2">
                                 Make
                             </label>
@@ -111,10 +111,32 @@
                                 <asp:TextBox ID="txtMake" runat="server" CssClass="form-control" TabIndex="3"></asp:TextBox>
                             </div>
                             <label class="col-md-2">
-                                Ip Address
+                                Ip Address<span class="errMsg">*</span>
                             </label>
                             <div class="col-md-4">
                                 <asp:TextBox ID="txtIp" runat="server" CssClass="form-control" TabIndex="3"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtIp" ValidationGroup="g1"
+                                    SetFocusOnError="True" ErrorMessage="Enter Ip Adress." ForeColor="Red"></asp:RequiredFieldValidator>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2">
+                                    Latitude<span class="errMsg">*</span>
+                                </label>
+                                <div class="col-md-4">
+                                    <asp:TextBox ID="txtLatitude" runat="server" CssClass="form-control" TabIndex="3"  ></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtLatitude" ValidationGroup="g1"
+                                        SetFocusOnError="True" ErrorMessage="Enter Latitude." ForeColor="Red"></asp:RequiredFieldValidator>
+                                   
+                                </div>
+                                <label class="col-md-2">
+                                    Logitude<span class="errMsg">*</span>
+                                </label>
+                                <div class="col-md-4">
+                                    <asp:TextBox ID="txtLongitude" runat="server" CssClass="form-control" TabIndex="3" ></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtLongitude" ValidationGroup="g1"
+                                        SetFocusOnError="True" ErrorMessage="Enter Logitude." ForeColor="Red"></asp:RequiredFieldValidator>
+                                </div>
                             </div>
                             <%--<label class="col-md-2">
                                 Confirm Password<span class="errMsg">*</span>
@@ -130,6 +152,9 @@
                     <div class="row">
                         <div class="form-group">--%>
                         </div>
+
+
+
                     </div>
                     <div class="row pull-right">
                         <div class="form-group">

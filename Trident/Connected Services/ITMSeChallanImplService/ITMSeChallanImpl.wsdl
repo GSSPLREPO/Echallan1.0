@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:intf="http://service.mother.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:impl="http://service.mother.com" targetNamespace="http://service.mother.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://service.mother.com">
+      <xsd:element name="getUnits">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="getUnitsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getUnitsReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="generateChallan">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="cameraID" type="xsd:string" />
+            <xsd:element name="transID" type="xsd:string" />
+            <xsd:element name="cameSecKey" type="xsd:string" />
+            <xsd:element name="cameraIP" type="xsd:string" />
+            <xsd:element name="systemID" type="xsd:string" />
+            <xsd:element name="userId" type="xsd:string" />
+            <xsd:element name="userName" type="xsd:string" />
+            <xsd:element name="timeStamp" type="xsd:string" />
+            <xsd:element name="IsItTempRegn" type="xsd:string" />
+            <xsd:element name="registrationNo" type="xsd:string" />
+            <xsd:element name="wheelerCode" type="xsd:string" />
+            <xsd:element name="vioCode" type="xsd:string" />
+            <xsd:element name="speedLimit" type="xsd:string" />
+            <xsd:element name="vehicleSpeed" type="xsd:string" />
+            <xsd:element name="xtraPassengers" type="xsd:string" />
+            <xsd:element name="frontalImgURLs" type="xsd:string" />
+            <xsd:element name="contextImgURL" type="xsd:string" />
+            <xsd:element name="lpImgURL" type="xsd:string" />
+            <xsd:element name="anprVideoURL" type="xsd:string" />
+            <xsd:element name="contextVideoURL" type="xsd:string" />
+            <xsd:element name="masterBase64Img" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="generateChallanResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="generateChallanReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="generateCameraPID">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="cameraID" type="xsd:string" />
+            <xsd:element name="cameraIP" type="xsd:string" />
+            <xsd:element name="unitCode" type="xsd:string" />
+            <xsd:element name="psCode" type="xsd:string" />
+            <xsd:element name="pointCode" type="xsd:string" />
+            <xsd:element name="location" type="xsd:string" />
+            <xsd:element name="gpsLatti" type="xsd:string" />
+            <xsd:element name="gpsLong" type="xsd:string" />
+            <xsd:element name="SystemID" type="xsd:string" />
+            <xsd:element name="userId" type="xsd:string" />
+            <xsd:element name="CameraSecuritySKey" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="generateCameraPIDResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="generateCameraPIDReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getPoliceStations">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="unitCode" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getPoliceStationsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getPoliceStationsReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getpoints">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="psCode" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getpointsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getpointsReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getOfficers">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="psCode" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getOfficersResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getOfficersReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="laserGunTabLogin">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="pidCd" type="xsd:string" />
+            <xsd:element name="password" type="xsd:string" />
+            <xsd:element name="imeiNo" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="laserGunTabLoginResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="laserGunTabLoginReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getVehicleDetails">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="regnNo" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getVehicleDetailsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getVehicleDetailsReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getUnitsResponse">
+    <wsdl:part name="parameters" element="impl:getUnitsResponse" />
+  </wsdl:message>
+  <wsdl:message name="laserGunTabLoginResponse">
+    <wsdl:part name="parameters" element="impl:laserGunTabLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="getPoliceStationsRequest">
+    <wsdl:part name="parameters" element="impl:getPoliceStations" />
+  </wsdl:message>
+  <wsdl:message name="getOfficersResponse">
+    <wsdl:part name="parameters" element="impl:getOfficersResponse" />
+  </wsdl:message>
+  <wsdl:message name="generateChallanResponse">
+    <wsdl:part name="parameters" element="impl:generateChallanResponse" />
+  </wsdl:message>
+  <wsdl:message name="getPoliceStationsResponse">
+    <wsdl:part name="parameters" element="impl:getPoliceStationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUnitsRequest">
+    <wsdl:part name="parameters" element="impl:getUnits" />
+  </wsdl:message>
+  <wsdl:message name="laserGunTabLoginRequest">
+    <wsdl:part name="parameters" element="impl:laserGunTabLogin" />
+  </wsdl:message>
+  <wsdl:message name="getVehicleDetailsRequest">
+    <wsdl:part name="parameters" element="impl:getVehicleDetails" />
+  </wsdl:message>
+  <wsdl:message name="generateChallanRequest">
+    <wsdl:part name="parameters" element="impl:generateChallan" />
+  </wsdl:message>
+  <wsdl:message name="getpointsRequest">
+    <wsdl:part name="parameters" element="impl:getpoints" />
+  </wsdl:message>
+  <wsdl:message name="getVehicleDetailsResponse">
+    <wsdl:part name="parameters" element="impl:getVehicleDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="generateCameraPIDResponse">
+    <wsdl:part name="parameters" element="impl:generateCameraPIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="getpointsResponse">
+    <wsdl:part name="parameters" element="impl:getpointsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getOfficersRequest">
+    <wsdl:part name="parameters" element="impl:getOfficers" />
+  </wsdl:message>
+  <wsdl:message name="generateCameraPIDRequest">
+    <wsdl:part name="parameters" element="impl:generateCameraPID" />
+  </wsdl:message>
+  <wsdl:portType name="ITMSeChallanImpl">
+    <wsdl:operation name="getUnits">
+      <wsdl:input name="getUnitsRequest" message="impl:getUnitsRequest" />
+      <wsdl:output name="getUnitsResponse" message="impl:getUnitsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="generateChallan">
+      <wsdl:input name="generateChallanRequest" message="impl:generateChallanRequest" />
+      <wsdl:output name="generateChallanResponse" message="impl:generateChallanResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="generateCameraPID">
+      <wsdl:input name="generateCameraPIDRequest" message="impl:generateCameraPIDRequest" />
+      <wsdl:output name="generateCameraPIDResponse" message="impl:generateCameraPIDResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getPoliceStations">
+      <wsdl:input name="getPoliceStationsRequest" message="impl:getPoliceStationsRequest" />
+      <wsdl:output name="getPoliceStationsResponse" message="impl:getPoliceStationsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getpoints">
+      <wsdl:input name="getpointsRequest" message="impl:getpointsRequest" />
+      <wsdl:output name="getpointsResponse" message="impl:getpointsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getOfficers">
+      <wsdl:input name="getOfficersRequest" message="impl:getOfficersRequest" />
+      <wsdl:output name="getOfficersResponse" message="impl:getOfficersResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="laserGunTabLogin">
+      <wsdl:input name="laserGunTabLoginRequest" message="impl:laserGunTabLoginRequest" />
+      <wsdl:output name="laserGunTabLoginResponse" message="impl:laserGunTabLoginResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getVehicleDetails">
+      <wsdl:input name="getVehicleDetailsRequest" message="impl:getVehicleDetailsRequest" />
+      <wsdl:output name="getVehicleDetailsResponse" message="impl:getVehicleDetailsResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ITMSeChallanImplSoapBinding" type="impl:ITMSeChallanImpl">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getUnits">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getUnitsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getUnitsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generateChallan">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="generateChallanRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="generateChallanResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generateCameraPID">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="generateCameraPIDRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="generateCameraPIDResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPoliceStations">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getPoliceStationsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getPoliceStationsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getpoints">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getpointsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getpointsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOfficers">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getOfficersRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getOfficersResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="laserGunTabLogin">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="laserGunTabLoginRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="laserGunTabLoginResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getVehicleDetails">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getVehicleDetailsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getVehicleDetailsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ITMSeChallanImplService">
+    <wsdl:port name="ITMSeChallanImpl" binding="impl:ITMSeChallanImplSoapBinding">
+      <wsdlsoap:address location="https://echallan.tspolice.gov.in/ITMSeChallanGeneration/services/ITMSeChallanImpl" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

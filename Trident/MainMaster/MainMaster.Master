@@ -1,0 +1,387 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MainMaster.master.cs" Inherits="Trident.MainMaster.MainMaster" %>
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Trident</title>
+
+    <link href="../css/PrintStyle.css" rel="stylesheet" />
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+    <%--<link href="../CSS/fileinput.css" rel="stylesheet" />--%>
+    <link rel="icon" type="image/png" sizes="96x96" href="../images/Odisha_Police_Logo.png" />
+    <link href="../css/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <script src="../js/bootstrap-datepicker.min.js"></script>
+    <link href="../css/bootstrap-timepicker.min.css" rel="stylesheet" />
+    <%--<script src="../js/bootstrap-timepicker.min.js"></script>--%>
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+    <link href="../css/jquery-ui.css" rel="stylesheet" />
+    <script src="../js/jquery.quicksearch.js"></script>
+    <script src="../js/CommonFunction.js"></script>
+    <script src="../js/ScriptPrint.js"></script>
+    <script src="../js/BarcodePrint.js"></script>
+    <script src="../codejs/MasterPage.js"></script>
+    <link href="../css/font-awesome.min.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="Head" runat="server">
+    </asp:ContentPlaceHolder>
+    <script type="text/javascript">
+        window.history.forward();
+    </script>
+    <style type="text/css">
+        .margin {
+            margin-top: 150px;
+        }
+
+        .show {
+            border-bottom: 1px dashed #999;
+            font-size: 15px;
+            /*height: 140px;*/
+            padding: 10px;
+            z-index: 999999;
+        }
+
+            .show:hover {
+                background: #4c66a4 none repeat scroll 0 0;
+                color: #fff;
+                cursor: pointer;
+            }
+    </style>
+</head>
+<body style="padding-top: 70px; padding-bottom: 50px; font-size: 17px">
+    <%--<form id="form2" runat="server">--%>
+        <div class="container">
+            <div class="navbar navbar-default navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a href="" class="navbar-brand">
+                            <img src="../images/Berhampur_Police.png" style="padding-bottom: 2px; margin-top: -8px; height: 90px; width: 90px;" /></a>
+                        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="navbar-collapse collapse" id="navbar-main1" style="">
+                        <ul class="nav navbar-nav">
+                            <div style="vertical-align: middle; font-size: x-large; padding-top: 25px; height: 50px;">
+                                TRIDENT<br />
+                                <span style="font-size: medium;"><i>e-Challan System for Berhampur Police</i></span>
+                            </div>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <%--<li>
+                                <input id="aplus" style="margin-top: 10px; width: 300px" placeholder="Customer Name / Address / Cust No. / Wait List No." class="form-control autosuggestCustomerSearch" type="text" /></li>
+                            <li>&nbsp;&nbsp;&nbsp;</li>
+                            <li>
+                                <input id="aplusMNo" style="margin-top: 10px; width: 150px" placeholder="Meter No." class="form-control autosuggestMeterSearch" type="text" />
+                            </li>--%>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="A1">Welcome: <%=Session["USERNAME"] %><span class="caret"></span></a>
+                                <ul class="dropdown-menu" aria-labelledby="themes">
+                                    <li><a href="../ClientUI/UserProfile.aspx">User Profile</a></li>
+                                </ul>
+                            </li>
+                            <%--<li id="22"><a href="../ClientUI/Rights.aspx">
+                                <i class="fa fa-check"></i>&nbsp;UserRights</a></li>--%>
+                            <li><a href="../Default.aspx?Logout=Success">
+                                <span class="fa fa-power-off"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <%--<div class="navbar-collapse collapse" id="navbar-main2">
+                        <ul class="nav navbar-nav">
+                        </ul>
+                    </div>--%>
+                    <div class="navbar-collapse collapse" style="float: right;" id="navbar-main">
+                        <ul class="nav navbar-nav">
+                            <%--<li style="padding: 5px;">
+                                <input id="aplusMNo" style="margin-top: 10px; width: 325px" placeholder="Meter No." class="form-control" type="text" />
+                            </li>--%>
+                            <%--<li id="home" style="font-size: 17px">
+                                <a href="../clientui/Dashboard.aspx">
+                                    <i class="fa fa-home"></i>
+                                    Home</a>
+                            </li>--%>
+                            <%-- <li id="58">
+                                <a href="../clientui/Dashboard2.aspx">
+                                    <i class="fa fa-dashboard"></i>
+                                    Dashboard</a> 
+                            </li>--%>
+                            <li id="MainScreens" class="dropdown" style="font-size: 17px; display: none;">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Challan<span class="caret"></span></a>
+                                <ul class="dropdown-menu" aria-labelledby="themes">
+                                    <li>
+                                        <div id="row1" class="row" style="width: 400px; padding-left: 10px; font-size: 17px">
+                                            <div class="col-md-3" id="col1">
+                                                <ul id="OrganisationInfo" class="list-unstyled">
+                                                    <li id="CRODashboard" style="display: none;"><a href="../ClientUI/CRODashboard.aspx" class="nav-link  active">CRO Dashboard</a></li>
+                                                    <li id="ManualChallan" style="display: none;"><a href="../ClientUI/CRONewChallan.aspx" class="nav-link active">Manual Challan</a></li>
+                                                    <li id="CRVODashboard" style="display: none;"><a href="../ClientUI/CRVODashboard.aspx" class="nav-link active">CRVO Dashboard</a></li>
+                                                    <li id="ChallanForUpdation" style="display: none;"><a href="../ClientUI/ChallanListForUpdation.aspx" class="nav-link active">List of Commented Challan</a></li>
+                                                    <li id="ChallanForPrint" style="display: none;"><a href="../ClientUI/CROChallanPrint.aspx" class="nav-link active">Challan Printing Dashboard</a></li>
+                                                    <li id="CODashboard" style="display: none;"><a href="../ClientUI/CollectionOfficerDashboard.aspx" class="nav-link active">CO Dashboard</a></li>
+                                                    <li id="ReceiptPrint" style="display: none;"><a href="../ClientUI/ReceiptPrint.aspx" class="nav-link active">Receipt Printing & Cancellation</a></li>
+                                                    <%--<li id="OrganisationDivider"  class="divider"></li>
+                                                    <li id="15" ><a href="../clientui/Organisation.aspx">Organisation</a></li>
+                                                    <li id="1" ><a href="../clientui/Branch.aspx">Branch</a></li>
+                                                    <li id="53" ><a href="../clientui/Designation.aspx">Designation</a></li>
+                                                    <li id="54" ><a href="../clientui/Employee.aspx">Employee</a></li>
+                                                    <li id="59" ><a href="../clientui/Role.aspx">Role</a></li>
+                                                    <li id="22" ><a href="../clientui/Rights.aspx">Role-Rights</a></li>
+                                                    <li id="47" ><a href="../clientui/Item.aspx">Item</a></li>
+                                                    <li id="18" ><a href="../clientui/Receipt.aspx">Receipt</a></li>
+                                                    <li id="14" ><a href="../clientui/Remark.aspx">Remark</a></li>
+                                                    <li id="Li6" ><a href="#">Add Help</a></li>
+                                                    <li id="Li7" ><a href="../clientui/Backup.aspx">Back Up</a></li>--%>
+                                                </ul>
+                                            </div>
+                                            <%--<div class="col-md-3" id="Div1">
+                                                <ul id="EmployeeInfo" class="list-unstyled ">
+                                                    <li id="EmployeeTitle"  class="text-center"><b>Gas Connection</b></li>
+                                                    <li id="EmployeeDivider"  class="divider"></li>
+                                                    <li id="2" ><a href="../clientui/Customer.aspx">Customer Connection</a></li>
+                                                     <li id="61" ><a href="../clientui/EmployeeBenefit.aspx">Employee Benefit</a></li>
+                                                    <li id="37" ><a href="../clientui/SwitchOffCustomer.aspx">Switchoff Customer</a></li>
+                                                    <li id="23" ><a href="../clientui/Slot.aspx">Slots</a></li>
+                                                    <li id="11" ><a href="../clientui/MeterMaster.aspx">Meter</a></li>
+                                                    <li id="13" ><a href="../clientui/MeterWiseSlot.aspx">Meter Wise Slot</a></li>
+                                                    <li id="46" ><a href="../clientui/CustomerBalance.aspx">Customer Balance</a></li>
+                                                    <li id="28" ><a href="../clientui/UpdateCustomerNo.aspx">Edit Customer No.</a></li>
+                                                    <li id="31" ><a href="../clientui/UpdateUnitRate.aspx">Update Unit Rate</a></li>
+                                                    <li id="34" ><a href="../clientui/UpdateCustomerDetails.aspx">Update Area City</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-5" id="col2"  >
+                                                <ul id="MaterialInfo" class="list-unstyled">
+                                                    <li id="MaterialTitle"  class="text-center "><b>Bank</b></li>
+                                                    <li id="MaterialDivider"  class="divider"></li>
+                                                    <li id="24" ><a href="../clientui/Bank.aspx">Bank Details</a></li>
+                                                    <li id="48" ><a href="../clientui/TallyGeneralReceiptByCheque.aspx">Tally General Receipt By Cheque</a></li>
+                                                    <li id="50" ><a href="../clientui/TallyGasBillReceiptByCheque.aspx">Tally GasBill Receipt By Cheque</a></li>
+                                                    <li id="55" ><a href="../clientui/UpdateTallyName.aspx">Update Tally Name</a></li>
+                                                </ul>
+                                            </div>--%>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li id="Masters" style="font-size: 17px; display: none;" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="A3">Masters<span class="caret"></span></a>
+                                <ul class="dropdown-menu" aria-labelledby="themes">
+                                    <li>
+                                        <div id="row2" class="row" style="width: 400px; font-size: 17px">
+                                            <div class="col-md-6" id="InventoryCol1">
+                                                <ul id="MaterialInventory" class="list-unstyled">
+                                                    <%--<li id="MaterialInventoryTitle"  class="text-center "><b>Receipt</b></li>
+                                                    <li id="MaterialInventoryDivider"  class="divider"></li>--%>
+                                                    <li id="HeadOffice" style="display: none;"><a href="../ClientUI/HeadOfficeMaster.aspx">Head Office</a></li>
+                                                    <li id="MVAct" style="display: none;"><a href="../ClientUI/MotorVehicleAct.aspx">MV Acts</a></li>
+                                                    <li id="Offenses" style="display: none;"><a href="../ClientUI/Offenses.aspx">Offenses</a></li>
+                                                    <li id="Users" style="display: none;"><a href="../ClientUI/User.aspx">Users</a></li>
+                                                    <li id="Camera" style="display: none;"><a href="../ClientUI/Camera.aspx">Camera</a></li>
+                                                    <li id="Role" style="display: none;"><a href="../ClientUI/Role.aspx">Roles</a></li>
+                                                    <li id="Rights" style="display: none;"><a href="../ClientUI/Rights.aspx">Rights</a></li>
+                                                    <%--<li id="4" ><a href="../clientui/FormFee.aspx">Form Fee Receipt</a></li>
+                                                    <li id="52" ><a href="../clientui/AllPrint.aspx">All Print</a></li>--%>
+                                                </ul>
+                                            </div>
+                                            <%--<div class="col-md-6" id="InventoryCol2" >
+                                                <ul id="PurchaseInventory" class="list-unstyled" >
+                                                    <li id="PurchaseInventoryTitle"  class="text-center "><b>Voucher</b></li>
+                                                    <li id="PurchaseInventoryDivider"  class="divider"></li>
+                                                    <li id="25" ><a href="../clientui/GenerateVoucher.aspx">Generate Voucher</a></li>
+                                                </ul>
+                                            </div>--%>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li id="Reports" style="font-size: 17px; display: none;" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="A4">Reports<span class="caret"></span></a>
+                                <ul class="dropdown-menu" aria-labelledby="themes">
+                                    <li>
+                                        <div id="row3" class="row" style="width: 400px; font-size: 17px">
+                                            <div class="col-md-6" id="InventoryCol2">
+                                                <ul id="ReportInventory" class="list-unstyled">
+                                                    <li id="PendingChallanReport" style="display: none;"><a href="../Reports/PendingChallanReport.aspx">Pending Challans</a></li>
+                                                    <li id="ApprovedChallanReport" style="display: none;"><a href="../Reports/ApprovedChallanReport.aspx">Approved Challans</a></li>
+                                                    <li id="PrintedChallanReport" style="display: none;"><a href="../Reports/PrintedChallanReport.aspx">Printed Challans</a></li>
+                                                    <li id="DiscardedChallanReport" style="display: none;"><a href="../Reports/DiscardedChallanReport.aspx">Discarded Challans</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <%--<li id="DirectInventory" style="font-size:17px" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="A7">Tally Direct Receipts<span class="caret"></span></a>
+                                <ul class="dropdown-menu" aria-labelledby="themes">
+                                    <li>
+                                        <div id="Directrow2" class="row" style="width: 770px; font-size: 17px">
+                                            <div class="col-md-6" id="DirectInventoryCol1" >
+                                                <ul id="DirectMaterialInventory" class="list-unstyled" >
+                                                    <li id="DirectMaterialInventoryTitle"  class="text-center "><b>Tally Direct Receipts</b></li>
+                                                    <li id="DirectMaterialInventoryDivider"  class="divider"></li>
+                                                    <li id="3" ><a href="../clientui/DirectBankReceipt.aspx">Direct Bank Receipts</a></li>
+                                                    <li id="63" ><a href="../clientui/DirectBankGasBillReceipt.aspx">Direct Bank Gas Bill</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6" id="DirectInventoryCol2" >
+                                                <ul id="DirectPurchaseInventory" class="list-unstyled" >
+                                                    <li id="DirectPurchaseInventoryTitle"  class="text-center "><b>Tally to D. Bank Trans.</b></li>
+                                                    <li id="DirectPurchaseInventoryDivider"  class="divider"></li>
+                                                    <li id="49" ><a href="../clientui/TallyDirectBankReceiptByCheque.aspx">Tally Direct Bank Receipt By Cheque</a></li>
+                                                    <li id="62" ><a href="../clientui/TallyDirectBankGasBillReceiptByCheque.aspx">Tally Direct Bank GasBill Receipt By Cheque</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li id="Li17"  class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="A4">Installation<span class="caret"></span></a>
+                                <ul class="dropdown-menu" aria-labelledby="themes">
+                                    <li>
+                                        <div id="Div2" class="row" style="width: 400px;font-size: 17px">
+                                            <div class="col-md-12" id="Div3" >
+                                                <ul id="Ul1" class="list-unstyled" >
+                                                    <li id="Li18"  class="text-center "><b>Installation</b></li>
+                                                    <li id="Li19"  class="divider"></li>
+                                                    <li id="12" ><a href="../clientui/InstallationLabourBill.aspx">Installation/Labour Bill</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li id="Li21"  class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="A5">Gas Consumption<span class="caret"></span></a>
+                                <ul class="dropdown-menu" aria-labelledby="themes">
+                                    <li>
+                                        <div id="Div4" class="row" style="width: 500px; font-size: 17px"">
+                                            <div class="col-md-6" id="Div5" >
+                                                <ul id="Ul2" class="list-unstyled" >
+                                                    <li id="Li22"  class="text-center "><b>Gas</b></li>
+                                                    <li id="Li23"  class="divider"></li>
+                                                    <li id="7" ><a href="../clientui/GasBillDomestic.aspx">Domestic Gas Bill</a></li>
+                                                    <li id="5" ><a href="../clientui/GasBillCommercial.aspx">Commercial Gas Bill</a></li>
+                                                    <li id="8" ><a href="../clientui/GasBillIndustrial.aspx">Industrial Gas Bill</a></li>
+                                                    <li id="518" ><a href="../clientui/GasBill.aspx">Gas Bill</a></li>
+                                                    <li id="6" ><a href="../clientui/GasBillData.aspx">Gas Bill Data</a></li>
+                                                    
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6" id="Div6" >
+                                                <ul id="Ul3" class="list-unstyled" >
+                                                    <li id="Li26"  class="text-center "><b>Gas Bill Receipt</b></li>
+                                                    <li id="Li27"  class="divider"></li>
+                                                    <li id="9" ><a href="../clientui/GasBillReceipt.aspx">Gas Bill Receipt</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li id="Li29"  class="dropdown-submenu pull-left">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="A2">Reports<span class="caret"></span></a>
+                                <ul class="dropdown-menu" aria-labelledby="themes">
+                                    <li>
+                                        <div id="Div7" class="row" style="width: 800px; font-size: 17px"">
+                                            <div class="col-md-6" id="Div8" >
+                                                <ul id="Ul4" class="list-unstyled" style="width:310px">
+                                                    <li id="Li30"  class="text-center "><b>Admin Reports</b></li>
+                                                    <li id="Li31"  class="divider"></li>
+                                                    <li id="51" ><a href="../clientui/CustomerHistory1.aspx">Customer History</a></li>
+                                                    <li id="64" ><a href="../reportui/CustomerHistoryinDetail.aspx">Customer History In Detail</a></li>
+                                                    <li id="65" ><a href="../reportui/GasBillHistory.aspx">Gas Bill History</a></li>
+                                                    <li id="66" ><a href="../reportui/EmployeeBenefitGasBillHistory.aspx">Employee Benifit Report</a></li>
+                                                    <li id="67" ><a href="../reportui/CustomerGasBill.aspx">Customer Gas Bill CR/DR</a></li>
+                                                    <li id="68" ><a href="../reportui/CustomerBalanceStatement.aspx">Customers Balance Statement</a></li>
+                                                    <li id="69" ><a href="../reportui/InstallationBill.aspx">Installation Bills</a></li>
+                                                    <li id="70" ><a href="../reportui/LabourBill.aspx">Labour Bills</a></li>
+                                                    <li id="71" ><a href="../reportui/TellyLedgers.aspx">Tally Ledgers To Be Inserted</a></li>
+                                                    <li id="72" ><a href="../reportui/SwitchOffCustomer.aspx">Switch Off Customer Report</a></li>
+                                                    <li id="73" ><a href="../reportui/BankWiseGasBillReciept.aspx">Bank Wise GasBill Receipt Details Report</a></li>
+                                                    <li id="74" ><a href="../reportui/BankWiseCustomerReciept.aspx">Bank Wise Customer Receipt Details Report</a></li>
+                                                    <li id="75" ><a href="../reportui/GasBillMinOffTake.aspx">Gas Bill for MinOffTake Report</a></li>
+                                                    <li id="76" ><a href="../reportui/DeletedReceipt.aspx">Deleted Receipt Report</a></li>
+                                                    <li id="44" ><a href="../reportui/FinalBillReport.aspx">Final Bill Report</a></li>
+                                                    <li id="43" ><a href="../reportui/TaxInvoiceReport.aspx">Tax Invoice Report</a></li>
+                                                    <li id="45" ><a href="../reportui/EmployeeBenifitReport.aspx">Employee Benifit Report</a></li>
+                                                    <li id="78" ><a href="../reportui/FormFeeReceiptReport.aspx">FormFee Receipt Report</a></li>
+                                                    <li id="79" ><a href="../reportui/TDSReceiptReport.aspx">TDS Receipt Report</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-4" id="Div9" >
+                                                <ul id="Ul5" class="list-unstyled" >
+                                                    <li id="Li34"  class="text-center "><b>General Report</b></li>
+                                                    <li id="Li35"  class="divider"></li>
+                                                    <li id="80" ><a href="../reportui/Employee.aspx">Employee Details</a></li>
+                                                    <li id="81" ><a href="../reportui/CustReceiptRpt.aspx">Customer Receipt</a></li>
+                                                    <li id="82" ><a href="../reportui/DeletedGasBill.aspx">Deleted Gas Bills</a></li>
+                                                    <li id="83" ><a href="../reportui/ItemsListReciept.aspx">List of Items</a></li>
+                                                    <li id="21" ><a href="../clientui/ReportParameters.aspx?ReportName=CustomerConncetionList">List of Connections</a></li>
+                                                    <li id="Li50" ><a href="#">Meter Connections</a></li>
+                                                    <li id="84" ><a href="../reportui/ListOfReceipts.aspx">List of Receipts</a></li>
+                                                    <li id="85" ><a href="../reportui/ListOfDirectBankReceits.aspx">List of Bank Receipts</a></li>
+                                                    <li id="86" ><a href="../reportui/GasConsumptionBills.aspx">Gas Consumption Bills</a></li>
+                                                    <li id="87" ><a href="../reportui/GasConsumptionBillMeterWise.aspx">Gas Consumption Bills Meter Wise</a></li>
+                                                    <li id="88" ><a href="../reportui/GasBillReceipts.aspx">Gas Bill Receipts</a></li>
+                                                    <li id="89" ><a href="../reportui/MeterReading.aspx">Meter Reading Statement</a></li>
+                                                    <li id="90" ><a href="../reportui/MeterReadingStatementNew.aspx">Meter Reading Statement New</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li id="32" style="font-size: 17px; display: none">
+                                <a href="../ClientUI/Accounts.aspx">Account</a>
+                            </li>
+                            <li style="font-size: 17px">
+                                <a href="#">Help</a>
+                            </li>
+                            <li>
+                                <input id="aplus" style="margin-top: 10px;" class="form-control" type="text" />
+                            </li>--%>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="containerholder" style="margin-top: 50px;" class="container">
+            <form id="form1" runat="server">
+            <asp:ContentPlaceHolder ID="MainBody" runat="server">
+            </asp:ContentPlaceHolder>
+                </form>
+        </div>
+        <div class="container">
+            <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav" style="vertical-align: bottom">
+                        <li><a>© 2019 all rights reserved | BERHAMPUR POLICE</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="http://garimasystem.com/" target="_blank">Powered By :
+						<img src="../images/GSSPL Rounded png.PNG" width="20" height="20" /></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    <%--</form>--%>
+
+
+
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/MenuVisibility.js"></script>
+    <script src="../js/CommonFunction.js"></script>
+
+    <asp:ContentPlaceHolder ID="ScriptDeclaration" runat="server">
+    </asp:ContentPlaceHolder>
+</body>
+</html>

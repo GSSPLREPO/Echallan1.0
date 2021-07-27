@@ -178,15 +178,15 @@ namespace Trident.ClientUI
                 // Staging URL
                 var isStaging = System.Configuration.ConfigurationSettings.AppSettings["IsStagingURL"];
                 dynamic client;
-                if(isStaging == "true")
+                if (isStaging == "true")
                 {
-                   client = new Staging.TMSeChallanImplClient();
+                    client = new Staging.TMSeChallanImplClient();
                 }
                 else
                 {
                     client = new ITMSeChallanImplService.TMSeChallanImplClient();
                 }
-               
+
 
                 if (ViewState["Mode"].ToString() == "Save")
                 {
@@ -207,9 +207,17 @@ namespace Trident.ClientUI
                             lblMsg.Visible = true;
                             if (camId > 0)
                             {
-                                var res = client.generateCameraPID(camId.ToString(), txtIp.Text, ddlUnit.SelectedValue.ToString(), ddlPs.SelectedValue.ToString(),
-                                     ddlPoints.SelectedValue.ToString(), ddlPoints.SelectedValue.ToString(), "", "", "", "", "");
-                                lblMsg.Text = "Record saved successfully.";
+                                string res = client.generateCameraPID(camId.ToString(), txtIp.Text, ddlUnit.SelectedValue.ToString(), ddlPs.SelectedValue.ToString(),
+                                     ddlPoints.SelectedValue.ToString(), ddlPoints.SelectedItem.ToString(), txtLatitude.Text, txtLongitude.Text, "", "", "");
+                                if (!res.Contains("cam-000"))
+                                {
+                                    lblMsg.Text = "Could not register camera or you have already registered the camera! Please review given details.";
+                                }
+                                else
+                                {
+                                    lblMsg.Text = "Record saved successfully.";
+
+                                }
                                 ClearAll();
                                 BindGrid();
                                 ViewState["Mode"] = "Save";
@@ -237,10 +245,18 @@ namespace Trident.ClientUI
                             lblMsg.Visible = true;
                             if (strMessage == "Record updated successfully.")
                             {
-                               
-                                var res = client.generateCameraPID(ViewState["CameraId"].ToString(), txtIp.Text, ddlUnit.SelectedValue.ToString(), ddlPs.SelectedValue.ToString(),
+
+                                string res = client.generateCameraPID(ViewState["CameraId"].ToString(), txtIp.Text, ddlUnit.SelectedValue.ToString(), ddlPs.SelectedValue.ToString(),
                                      ddlPoints.SelectedValue.ToString(), ddlPoints.SelectedValue.ToString(), "", "", "", "", "");
-                                lblMsg.Text = strMessage;
+                                if (!res.Contains("cam-000"))
+                                {
+                                    lblMsg.Text = "Could not register camera or you have already registered the camera! Please review given details.";
+                                }
+                                else
+                                {
+                                    lblMsg.Text = strMessage;
+
+                                }
                                 ClearAll();
                                 BindGrid();
                                 ViewState["Mode"] = "Save";
@@ -332,7 +348,7 @@ namespace Trident.ClientUI
                             txtName.Text = dtResult.Rows[0][CameraBO.CAMERA_Name].ToString();
                             txtMake.Text = dtResult.Rows[0][CameraBO.CAMERA_Make].ToString();
                             txtIp.Text = dtResult.Rows[0][CameraBO.CAMERA_IpAddress].ToString();
-                            txtLatitude.Text= dtResult.Rows[0][CameraBO.CAMERA_Latitude].ToString();
+                            txtLatitude.Text = dtResult.Rows[0][CameraBO.CAMERA_Latitude].ToString();
                             txtLongitude.Text = dtResult.Rows[0][CameraBO.CAMERA_Logitude].ToString();
                             ControlVisibility(false, true);
                         }

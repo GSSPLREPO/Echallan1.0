@@ -216,7 +216,6 @@ namespace Trident.ClientUI
                                 else
                                 {
                                     lblMsg.Text = "Record saved successfully.";
-
                                 }
                                 ClearAll();
                                 BindGrid();

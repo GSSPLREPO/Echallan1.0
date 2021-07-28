@@ -10,7 +10,8 @@
     <link rel="icon" type="image/png" sizes="96x96" href="images/Odisha_Police_Logo.png" />
     <style>
         body {
-            background: url('Images/Background.JPG') no-repeat center center fixed;
+            /*background: url('Images/Background.JPG') no-repeat center center fixed;*/
+            background: 
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -41,7 +42,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="panel-title">
-                            Trident
+                            E-Challen Bridge
                             <%--<div class="nav navbar-nav navbar-right">
                                 Powered By :
                             <a href="http://www.banyantreesoft.com" target="_blank" style="color: white">
@@ -54,7 +55,9 @@
                             <div class="input-group row" style="color: green; vertical-align: top; font-weight: bold; margin-top: -8px; height: 90px; width: 172px;">
                                 <div class="col-md-10">Sign In</div>
                                 <div class="col-md-2">
-                                    <img src="../images/Berhampur_Police.png" style="margin-top: -8px; height: 150px; width: 165px; text-align: center;" /></div>
+                                    <%--<img src="../images/Berhampur_Police1.png" style="margin-top: -8px; height: 150px; width: 165px; text-align: center;" />--%>
+
+                                </div>
                             </div>
                             <br />
                             <div style="margin-bottom: 15px" class="input-group">
@@ -93,7 +96,7 @@
                                 </div>--%>
                                 <div class="col-md-9 control" style="display: inline-block; font-size: 12px;">
                                     <div>
-                                        <%--Don't have an account!  <a href="#" onclick="$('#loginbox').hide(); $('#signupbox').show()">Sign Up Here </a><br />--%>© 2019 all rights reserved | BERHAMPUR POLICE
+                                        <%--Don't have an account!  <a href="#" onclick="$('#loginbox').hide(); $('#signupbox').show()">Sign Up Here </a><br />--%>© 2021 all rights reserved
                                     </div>
                                 </div>
                                 <div class="col-md-3 pull-right" style="font-size: 12px;">

@@ -56,7 +56,9 @@
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <a href="" class="navbar-brand">
-                            <img src="../images/Berhampur_Police.png" style="padding-bottom: 2px; margin-top: -8px; height: 90px; width: 90px;" /></a>
+                            <%--<img src="../images/Berhampur_Police.png" style="padding-bottom: 2px; margin-top: -8px; height: 90px; width: 90px;" />--%>
+
+                        </a>
                         <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -66,8 +68,8 @@
                     <div class="navbar-collapse collapse" id="navbar-main1" style="">
                         <ul class="nav navbar-nav">
                             <div style="vertical-align: middle; font-size: x-large; padding-top: 25px; height: 50px;">
-                                TRIDENT<br />
-                                <span style="font-size: medium;"><i>e-Challan System for Berhampur Police</i></span>
+                                E-Challen Bridge<br />
+                                <%--<span style="font-size: medium;"><i>e-Challan System for Berhampur Police</i></span>--%>
                             </div>
                         </ul>
 
@@ -111,8 +113,10 @@
                                     <i class="fa fa-dashboard"></i>
                                     Dashboard</a> 
                             </li>--%>
-                            <li id="MainScreens" class="dropdown" style="font-size: 17px; display: none;">
+
+                           <%-- <li id="MainScreens" class="dropdown" style="font-size: 17px; display: none;">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Challan<span class="caret"></span></a>
+                                
                                 <ul class="dropdown-menu" aria-labelledby="themes">
                                     <li>
                                         <div id="row1" class="row" style="width: 400px; padding-left: 10px; font-size: 17px">
@@ -125,50 +129,16 @@
                                                     <li id="ChallanForPrint" style="display: none;"><a href="../ClientUI/CROChallanPrint.aspx" class="nav-link active">Challan Printing Dashboard</a></li>
                                                     <li id="CODashboard" style="display: none;"><a href="../ClientUI/CollectionOfficerDashboard.aspx" class="nav-link active">CO Dashboard</a></li>
                                                     <li id="ReceiptPrint" style="display: none;"><a href="../ClientUI/ReceiptPrint.aspx" class="nav-link active">Receipt Printing & Cancellation</a></li>
-                                                    <%--<li id="OrganisationDivider"  class="divider"></li>
-                                                    <li id="15" ><a href="../clientui/Organisation.aspx">Organisation</a></li>
-                                                    <li id="1" ><a href="../clientui/Branch.aspx">Branch</a></li>
-                                                    <li id="53" ><a href="../clientui/Designation.aspx">Designation</a></li>
-                                                    <li id="54" ><a href="../clientui/Employee.aspx">Employee</a></li>
-                                                    <li id="59" ><a href="../clientui/Role.aspx">Role</a></li>
-                                                    <li id="22" ><a href="../clientui/Rights.aspx">Role-Rights</a></li>
-                                                    <li id="47" ><a href="../clientui/Item.aspx">Item</a></li>
-                                                    <li id="18" ><a href="../clientui/Receipt.aspx">Receipt</a></li>
-                                                    <li id="14" ><a href="../clientui/Remark.aspx">Remark</a></li>
-                                                    <li id="Li6" ><a href="#">Add Help</a></li>
-                                                    <li id="Li7" ><a href="../clientui/Backup.aspx">Back Up</a></li>--%>
+                                                    
                                                 </ul>
                                             </div>
-                                            <%--<div class="col-md-3" id="Div1">
-                                                <ul id="EmployeeInfo" class="list-unstyled ">
-                                                    <li id="EmployeeTitle"  class="text-center"><b>Gas Connection</b></li>
-                                                    <li id="EmployeeDivider"  class="divider"></li>
-                                                    <li id="2" ><a href="../clientui/Customer.aspx">Customer Connection</a></li>
-                                                     <li id="61" ><a href="../clientui/EmployeeBenefit.aspx">Employee Benefit</a></li>
-                                                    <li id="37" ><a href="../clientui/SwitchOffCustomer.aspx">Switchoff Customer</a></li>
-                                                    <li id="23" ><a href="../clientui/Slot.aspx">Slots</a></li>
-                                                    <li id="11" ><a href="../clientui/MeterMaster.aspx">Meter</a></li>
-                                                    <li id="13" ><a href="../clientui/MeterWiseSlot.aspx">Meter Wise Slot</a></li>
-                                                    <li id="46" ><a href="../clientui/CustomerBalance.aspx">Customer Balance</a></li>
-                                                    <li id="28" ><a href="../clientui/UpdateCustomerNo.aspx">Edit Customer No.</a></li>
-                                                    <li id="31" ><a href="../clientui/UpdateUnitRate.aspx">Update Unit Rate</a></li>
-                                                    <li id="34" ><a href="../clientui/UpdateCustomerDetails.aspx">Update Area City</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-md-5" id="col2"  >
-                                                <ul id="MaterialInfo" class="list-unstyled">
-                                                    <li id="MaterialTitle"  class="text-center "><b>Bank</b></li>
-                                                    <li id="MaterialDivider"  class="divider"></li>
-                                                    <li id="24" ><a href="../clientui/Bank.aspx">Bank Details</a></li>
-                                                    <li id="48" ><a href="../clientui/TallyGeneralReceiptByCheque.aspx">Tally General Receipt By Cheque</a></li>
-                                                    <li id="50" ><a href="../clientui/TallyGasBillReceiptByCheque.aspx">Tally GasBill Receipt By Cheque</a></li>
-                                                    <li id="55" ><a href="../clientui/UpdateTallyName.aspx">Update Tally Name</a></li>
-                                                </ul>
-                                            </div>--%>
+
+                                            
                                         </div>
                                     </li>
                                 </ul>
-                            </li>
+                            </li>--%>
+
                             <li id="Masters" style="font-size: 17px; display: none;" class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="A3">Masters<span class="caret"></span></a>
                                 <ul class="dropdown-menu" aria-labelledby="themes">
@@ -178,9 +148,10 @@
                                                 <ul id="MaterialInventory" class="list-unstyled">
                                                     <%--<li id="MaterialInventoryTitle"  class="text-center "><b>Receipt</b></li>
                                                     <li id="MaterialInventoryDivider"  class="divider"></li>--%>
-                                                    <li id="HeadOffice" style="display: none;"><a href="../ClientUI/HeadOfficeMaster.aspx">Head Office</a></li>
+                                                   <%-- <li id="HeadOffice" style="display: none;"><a href="../ClientUI/HeadOfficeMaster.aspx">Head Office</a></li>
                                                     <li id="MVAct" style="display: none;"><a href="../ClientUI/MotorVehicleAct.aspx">MV Acts</a></li>
                                                     <li id="Offenses" style="display: none;"><a href="../ClientUI/Offenses.aspx">Offenses</a></li>
+                                                   --%> 
                                                     <li id="Users" style="display: none;"><a href="../ClientUI/User.aspx">Users</a></li>
                                                     <li id="Camera" style="display: none;"><a href="../ClientUI/Camera.aspx">Camera</a></li>
                                                     <li id="Role" style="display: none;"><a href="../ClientUI/Role.aspx">Roles</a></li>
@@ -208,10 +179,10 @@
                                         <div id="row3" class="row" style="width: 400px; font-size: 17px">
                                             <div class="col-md-6" id="InventoryCol2">
                                                 <ul id="ReportInventory" class="list-unstyled">
-                                                    <li id="PendingChallanReport" style="display: none;"><a href="../Reports/PendingChallanReport.aspx">Pending Challans</a></li>
+                                                    <%--<li id="PendingChallanReport" style="display: none;"><a href="../Reports/PendingChallanReport.aspx">Pending Challans</a></li>
                                                     <li id="ApprovedChallanReport" style="display: none;"><a href="../Reports/ApprovedChallanReport.aspx">Approved Challans</a></li>
                                                     <li id="PrintedChallanReport" style="display: none;"><a href="../Reports/PrintedChallanReport.aspx">Printed Challans</a></li>
-                                                    <li id="DiscardedChallanReport" style="display: none;"><a href="../Reports/DiscardedChallanReport.aspx">Discarded Challans</a></li>
+                                                    <li id="DiscardedChallanReport" style="display: none;"><a href="../Reports/DiscardedChallanReport.aspx">Discarded Challans</a></li>--%>
                                                 </ul>
                                             </div>
                                         </div>
@@ -364,7 +335,7 @@
             <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
                 <div class="container-fluid">
                     <ul class="nav navbar-nav" style="vertical-align: bottom">
-                        <li><a>© 2019 all rights reserved | BERHAMPUR POLICE</a></li>
+                        <li><a>© 2021 all rights reserved </a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="http://garimasystem.com/" target="_blank">Powered By :

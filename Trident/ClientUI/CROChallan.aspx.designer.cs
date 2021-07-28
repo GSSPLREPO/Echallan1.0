@@ -76,24 +76,6 @@ namespace Trident.ClientUI {
         protected global::System.Web.UI.WebControls.TextBox txtPoliceStation;
         
         /// <summary>
-        /// gvListOfPendingEchallan control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvListOfPendingEchallan;
-        
-        /// <summary>
-        /// ddlOffense control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlOffense;
-        
-        /// <summary>
         /// hdnTotalPendingAmount control.
         /// </summary>
         /// <remarks>
@@ -164,14 +146,5 @@ namespace Trident.ClientUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnCount;
-        
-        /// <summary>
-        /// txtAmount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAmount;
     }
 }

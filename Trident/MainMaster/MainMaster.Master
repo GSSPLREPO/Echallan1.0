@@ -123,12 +123,12 @@
                                         <div class="col-md-3" id="col1">
                                             <ul id="OrganisationInfo" class="list-unstyled">
                                                 <li id="CRODashboard" style="display: none;"><a href="../ClientUI/CRODashboard.aspx" class="nav-link  active">CRO Dashboard</a></li>
-                                                <li id="ManualChallan" style="display: none;"><a href="../ClientUI/CRONewChallan.aspx" class="nav-link active">Manual Challan</a></li>
+                                              <%--  <li id="ManualChallan" style="display: none;"><a href="../ClientUI/CRONewChallan.aspx" class="nav-link active">Manual Challan</a></li>
                                                 <li id="CRVODashboard" style="display: none;"><a href="../ClientUI/CRVODashboard.aspx" class="nav-link active">CRVO Dashboard</a></li>
                                                 <li id="ChallanForUpdation" style="display: none;"><a href="../ClientUI/ChallanListForUpdation.aspx" class="nav-link active">List of Commented Challan</a></li>
                                                 <li id="ChallanForPrint" style="display: none;"><a href="../ClientUI/CROChallanPrint.aspx" class="nav-link active">Challan Printing Dashboard</a></li>
                                                 <li id="CODashboard" style="display: none;"><a href="../ClientUI/CollectionOfficerDashboard.aspx" class="nav-link active">CO Dashboard</a></li>
-                                                <li id="ReceiptPrint" style="display: none;"><a href="../ClientUI/ReceiptPrint.aspx" class="nav-link active">Receipt Printing & Cancellation</a></li>
+                                                <li id="ReceiptPrint" style="display: none;"><a href="../ClientUI/ReceiptPrint.aspx" class="nav-link active">Receipt Printing & Cancellation</a></li>--%>
 
                                             </ul>
                                         </div>

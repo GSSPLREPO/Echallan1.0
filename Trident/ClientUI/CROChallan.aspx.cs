@@ -48,7 +48,7 @@ namespace Trident.ClientUI
                         HttpContext.Current.Response.Redirect("../UnauthorisedUI/UnauthorisedAccess.aspx");
                     }
                 }
-                BindVehicleType();
+                //BindVehicleType();
                 var strFinalString = Request.QueryString["FinalString"] != null && Request.QueryString["FinalString"] != "" ? Request.QueryString["FinalString"] : "";
                 if (strFinalString != "")
                 {
@@ -68,17 +68,17 @@ namespace Trident.ClientUI
                     txtSearchVehicleNo.Text = Plate;
                     txtDateTimeOfViolation.Text = ViolationDate;
                     txtPoliceStation.Text = PoliceStation;
-                    txtLocation.Text = Camera;
-                    txtDueDate.Text = DateTime.Now.AddDays(Convert.ToInt32(Session["DueDays"])).ToShortDateString();
+                    //txtLocation.Text = Camera;
+                    //txtDueDate.Text = DateTime.Now.AddDays(Convert.ToInt32(Session["DueDays"])).ToShortDateString();
                     hdnCount.Value = ScreenShots.ToString();
                     hdnSc.Value = stringarr[7].ToString().Replace(@"\", "&");
                     //Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "addImages('" +  + "', " + ScreenShots + ")", true);
-                    BindPendingChallanGrid();
+                    //BindPendingChallanGrid();
                     txtDateTimeOfViolation.Attributes.Add("readonly", "readonly");
-                    txtDueDate.Attributes.Add("readonly", "readonly");
+                    //txtDueDate.Attributes.Add("readonly", "readonly");
                     hdnHeadOfficeId.Value = Session["HEADOFFICEID"].ToString();
-                    txtNoOfViolations.Attributes.Add("readonly", "readonly");
-                    txtLocation.Attributes.Add("readonly", "readonly");
+                    //txtNoOfViolations.Attributes.Add("readonly", "readonly");
+                    //txtLocation.Attributes.Add("readonly", "readonly");
                 }
             }
             catch (Exception ex)
@@ -198,79 +198,79 @@ namespace Trident.ClientUI
         }
         #endregion
 
-        #region BindVehicleType Method
-        public void BindVehicleType()
-        {
-            try
-            {
-                CROChallanBL objCROChallanBL = new CROChallanBL();
-                ApplicationResult objResult = new ApplicationResult();
-                Controls objControl = new Controls();
-                objResult = objCROChallanBL.CROChallan_SelectAll();
-                if (objResult != null)
-                {
-                    if (objResult.resultDT.Rows.Count > 0)
-                    {
-                        objControl.BindDropDown_ListBox(objResult.resultDT, ddlVehicleType, "VehicleType", "Id");
-                    }
-                    //ddlVehicleType.Items.Insert(0, new ListItem("--Select--", "-1"));
-                }
-            }
-            catch (Exception ex)
-            {
-                log.Error("BindVehicleType", ex);
-                ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Opps!Something went Wrong.Contact Your Administrator.');</script>");
-            }
-        }
-        #endregion
+        //#region BindVehicleType Method
+        //public void BindVehicleType()
+        //{
+        //    try
+        //    {
+        //        CROChallanBL objCROChallanBL = new CROChallanBL();
+        //        ApplicationResult objResult = new ApplicationResult();
+        //        Controls objControl = new Controls();
+        //        objResult = objCROChallanBL.CROChallan_SelectAll();
+        //        if (objResult != null)
+        //        {
+        //            if (objResult.resultDT.Rows.Count > 0)
+        //            {
+        //                objControl.BindDropDown_ListBox(objResult.resultDT, ddlVehicleType, "VehicleType", "Id");
+        //            }
+                   
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        log.Error("BindVehicleType", ex);
+        //        ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Opps!Something went Wrong.Contact Your Administrator.');</script>");
+        //    }
+        //}
+        //#endregion
 
-        #region BindPendingChallanGrid Method
-        public void BindPendingChallanGrid()
-        {
-            try
-            {
-                CROChallanBL objCROChallanBL = new CROChallanBL();
-                ApplicationResult objResult = new ApplicationResult();
+        //#region BindPendingChallanGrid Method
+        //public void BindPendingChallanGrid()
+        //{
+        //    try
+        //    {
+        //        CROChallanBL objCROChallanBL = new CROChallanBL();
+        //        ApplicationResult objResult = new ApplicationResult();
 
-                objResult = objCROChallanBL.CROChallan_PendingChallan(txtSearchVehicleNo.Text);
-                if (objResult != null)
-                {
-                    gvListOfPendingEchallan.Visible = true;
-                    gvListOfPendingEchallan.DataSource = objResult.resultDS.Tables[0];
-                    gvListOfPendingEchallan.DataBind();
-                    BindOffense(objResult.resultDS.Tables[2]);
-                    txtNoOfViolations.Text = objResult.resultDS.Tables[1].Rows[0][0].ToString();
-                    hdnPendingChallanIds.Value = objResult.resultDS.Tables[4].Rows[0][0] != null ? objResult.resultDS.Tables[4].Rows[0][0].ToString() : "";
-                    //hdnTotalPendingAmount.Value = objResult.resultDS.Tables[3].Rows[0][0].ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                log.Error("BindPendingChallanGrid", ex);
-                ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Opps!Something went Wrong.Contact Your Administrator.');</script>");
-            }
-        }
-        #endregion
+        //        objResult = objCROChallanBL.CROChallan_PendingChallan(txtSearchVehicleNo.Text);
+        //        if (objResult != null)
+        //        {
+        //            gvListOfPendingEchallan.Visible = true;
+        //            gvListOfPendingEchallan.DataSource = objResult.resultDS.Tables[0];
+        //            gvListOfPendingEchallan.DataBind();
+        //            BindOffense(objResult.resultDS.Tables[2]);
+        //            ////txtNoOfViolations.Text = objResult.resultDS.Tables[1].Rows[0][0].ToString();
+        //            hdnPendingChallanIds.Value = objResult.resultDS.Tables[4].Rows[0][0] != null ? objResult.resultDS.Tables[4].Rows[0][0].ToString() : "";
+        //            ////hdnTotalPendingAmount.Value = objResult.resultDS.Tables[3].Rows[0][0].ToString();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        log.Error("BindPendingChallanGrid", ex);
+        //        ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Opps!Something went Wrong.Contact Your Administrator.');</script>");
+        //    }
+        //}
+        //#endregion
 
-        #region BindOffense Method
-        public void BindOffense(DataTable dtResult)
-        {
-            try
-            {
-                Controls objControl = new Controls();
-                if (dtResult.Rows.Count > 0)
-                {
-                    objControl.BindDropDown_ListBox(dtResult, ddlOffense, "Name", "Id");
-                }
-                ddlOffense.Items.Insert(0, new ListItem("--Select--", "-1"));
-            }
-            catch (Exception ex)
-            {
-                log.Error("BindOffense", ex);
-                ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Opps!Something went Wrong.Contact Your Administrator.');</script>");
-            }
-        }
-        #endregion
+        //#region BindOffense Method
+        //public void BindOffense(DataTable dtResult)
+        //{
+        //    try
+        //    {
+        //        Controls objControl = new Controls();
+        //        if (dtResult.Rows.Count > 0)
+        //        {
+        //            objControl.BindDropDown_ListBox(dtResult, ddlOffense, "Name", "Id");
+        //        }
+        //        ddlOffense.Items.Insert(0, new ListItem("--Select--", "-1"));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        log.Error("BindOffense", ex);
+        //        ClientScript.RegisterStartupScript(typeof(Page), "MessagePopUp", "<script>alert('Opps!Something went Wrong.Contact Your Administrator.');</script>");
+        //    }
+        //}
+        //#endregion
 
         #region btnBack and btnCancel Click Event
         protected void btnBack_Click(object sender, EventArgs e)

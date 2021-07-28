@@ -317,9 +317,9 @@
                         </label>
                     </div>
                 </div>--%>
-                <div class="row">
-                    <div class="panel-body">
-                        <asp:GridView runat="server" ID="gvListOfPendingEchallan" CssClass="table table-hover table-striped" AutoGenerateColumns="False" CellPadding="4" border="1" Style="border-collapse: collapse;" GridLines="None" ShowHeaderWhenEmpty="True">
+              <%--  <div class="row">
+                    <div class="panel-body">--%>
+                      <%--  <asp:GridView runat="server" ID="gvListOfPendingEchallan" CssClass="table table-hover table-striped" AutoGenerateColumns="False" CellPadding="4" border="1" Style="border-collapse: collapse;" GridLines="None" ShowHeaderWhenEmpty="True">
                             <Columns>
                                 <asp:BoundField HeaderText="ChallanId" DataField="ChallanId" ItemStyle-CssClass="hidden" HeaderStyle-CssClass="hidden" ItemStyle-Width="5%" HeaderStyle-Width="5%"></asp:BoundField>
                                 <asp:BoundField HeaderText="Sr. No." DataField="SrNo" ItemStyle-Width="5%" HeaderStyle-Width="5%"></asp:BoundField>
@@ -327,9 +327,9 @@
                                 <asp:BoundField HeaderText="Challan No" DataField="ChallanNo" ItemStyle-Width="25%" HeaderStyle-Width="25%" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
                                 <asp:BoundField HeaderText="Amount" DataField="TotalAmount" ItemStyle-Width="15%" HeaderStyle-Width="15%" ItemStyle-HorizontalAlign="Right"></asp:BoundField>
                             </Columns>
-                        </asp:GridView>
-                    </div>
-                </div>
+                        </asp:GridView>--%>
+                <%--    </div>
+                </div>--%>
 
                 <br />
                 <div class="row">
@@ -340,12 +340,12 @@
                     </div>
                     <br />--%>
                     <div class="form-group">
-                        <label class="col-md-2">
+                    <%--    <label class="col-md-2">
                             Offense<span class="errMsg">*</span>
-                        </label>
-                        <div class="col-md-4">
-                            <asp:DropDownList ID="ddlOffense" onblur="validateSelect(this.id, 'Select Offense');" runat="server" ClientIDMode="Static" CssClass="form-control" />
-                            <span class="errMsg"></span>
+                        </label>--%>
+                        <div class="col-md-2">
+                           <%-- <asp:DropDownList ID="ddlOffense" onblur="validateSelect(this.id, 'Select Offense');" runat="server" ClientIDMode="Static" CssClass="form-control" />
+                            <span class="errMsg"></span>--%>
                             <asp:HiddenField ID="hdnTotalPendingAmount" ClientIDMode="Static" runat="server" />
                             <asp:HiddenField ID="hdnOffense" ClientIDMode="Static" runat="server" />
                             <asp:HiddenField ID="hdnHeadOfficeId" ClientIDMode="Static" runat="server" />
@@ -355,13 +355,13 @@
                             <asp:HiddenField ID="hdnSc" ClientIDMode="Static" runat="server" />
                             <asp:HiddenField ID="hdnCount" ClientIDMode="Static" runat="server" />
                         </div>
-                        <label class="col-md-2">
+                      <%--  <label class="col-md-2">
                             Amount<span class="errMsg">*</span>
                         </label>
                         <div class="col-md-4">
                             <asp:TextBox ID="txtAmount" CssClass="form-control" onkeyup="validate(this.id, 'Enter Amount', '');numberAllow(this.id, 'Only numeric data allowed.');" ClientIDMode="Static" runat="server" ReadOnly="true" />
                             <span class="errMsg"></span>
-                        </div>
+                        </div>--%>
                     </div>
                 </div>
                 <br />

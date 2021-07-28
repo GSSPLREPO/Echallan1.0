@@ -3,15 +3,14 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>Trident</title>
+    <title>E-Challan Bridge</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
     <link href="../css/bootstrap-theme.min.css" rel="stylesheet" />
-    <link rel="icon" type="image/png" sizes="96x96" href="images/Odisha_Police_Logo.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="images/Berhampur_Police1.png" />
     <style>
         body {
-            /*background: url('Images/Background.JPG') no-repeat center center fixed;*/
-            background: 
+            background: url('Images/Background.JPG') no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -42,7 +41,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="panel-title">
-                            E-Challen Bridge
+                            E-Challan Bridge
                             <%--<div class="nav navbar-nav navbar-right">
                                 Powered By :
                             <a href="http://www.banyantreesoft.com" target="_blank" style="color: white">
@@ -52,10 +51,10 @@
                     </div>
                     <div style="padding-top: 30px" class="panel-body">
                         <form id="loginform" class="form-horizontal" role="form" runat="server">
-                            <div class="input-group row" style="color: green; vertical-align: top; font-weight: bold; margin-top: -8px; height: 90px; width: 172px;">
+                            <div class="input-group row" style="color: green; vertical-align: top; font-weight: bold; margin-top: -8px; height: 10px; width: 172px;">
                                 <div class="col-md-10">Sign In</div>
                                 <div class="col-md-2">
-                                    <%--<img src="../images/Berhampur_Police1.png" style="margin-top: -8px; height: 150px; width: 165px; text-align: center;" />--%>
+                                    <img src="../images/Berhampur_Police1.png" style="margin-top: -8px; height: 150px; width: 165px; text-align: center;" />
 
                                 </div>
                             </div>

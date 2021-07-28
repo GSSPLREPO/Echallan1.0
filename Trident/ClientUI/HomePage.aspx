@@ -9,7 +9,7 @@
         <div class="panel-heading">
                 <div class="row" style="background-color: bisque;">
                     <div class="col-md-10" style="font-size: 24px; text-align: center">
-                        WELCOME TO BERHAMPUR POLICE E-CHALLAN APPLICATION
+                        <%--WELCOME TO BERHAMPUR POLICE E-CHALLAN APPLICATION--%>
                     </div>
                   
                 </div>

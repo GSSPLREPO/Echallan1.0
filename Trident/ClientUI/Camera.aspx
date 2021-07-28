@@ -130,7 +130,7 @@
                                    
                                 </div>
                                 <label class="col-md-2">
-                                    Logitude<span class="errMsg">*</span>
+                                    Longitude<span class="errMsg">*</span>
                                 </label>
                                 <div class="col-md-4">
                                     <asp:TextBox ID="txtLongitude" runat="server" CssClass="form-control" TabIndex="3" ></asp:TextBox>

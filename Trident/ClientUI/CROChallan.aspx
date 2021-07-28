@@ -65,7 +65,6 @@
 
         .lblChecked {
             border: 2px solid grey;
-            
         }
 
             .lblChecked:before {
@@ -81,14 +80,14 @@
                 z-index: -1;
             }
 
-            img:hover {
-                transform: scale(2);
-            }
+        img:hover {
+            transform: scale(2);
+        }
     </style>
     <script src="../codejs/CROEchallan.js"></script>
     <link href="../css/bootstrap-datepicker.min.css" rel="stylesheet" />
     <script src="../js/bootstrap-datepicker.min.js"></script>
-    
+
     <%--<link href="../css/bootstrap-multiselect.css" rel="stylesheet" />
     <script src="../js/bootstrap-multiselect.js"></script>
     <script type="text/javascript">
@@ -134,8 +133,8 @@
                         <div class="col-md-2">
                             <asp:Image ID="imgContextImage" runat="server" Height="100px" Width="130px" />
                         </div>
-                        <div id="dvScreenshots" class="col-md-6">
-                        </div>
+                        <%-- <div id="dvScreenshots" class="col-md-6">
+                        </div>--%>
                     </div>
                 </div>
                 <br />
@@ -157,7 +156,7 @@
                     </div>
                 </div>
                 <br />
-                <div class="row">
+                <%-- <div class="row">
                     <div class="form-group">
                         <label class="col-md-2">
                             Name<span class="errMsg">*</span>
@@ -183,8 +182,8 @@
                         </div>
                     </div>
                 </div>
-                <br />
-                <div class="row">
+                <br />--%>
+                <%--<div class="row">
                     <div class="form-group">
                         <label class="col-md-2">
                             Address
@@ -215,8 +214,8 @@
                         </div>
                     </div>
                 </div>
-                <br />
-                <div class="row">
+                <br />--%>
+                <%--<div class="row">
                     <div class="form-group">
                         <label class="col-md-2">
                             Postal Code<span class="errMsg">*</span>
@@ -227,7 +226,7 @@
                         </div>
                     </div>
                 </div>
-                <br />
+                <br />--%>
                 <div class="row">
                     <div class="form-group">
                         <label class="col-md-2">
@@ -241,7 +240,7 @@
                             </div>
                         </div>
 
-                        <label class="col-md-2">
+                        <%--<label class="col-md-2">
                             Due Date
                         </label>
                         <div class="col-md-4">
@@ -250,17 +249,11 @@
                                 <asp:TextBox ID="txtDueDate" runat="server" CssClass="form-control" />
                                 <span class="errMsg"></span>
                             </div>
-                        </div>
+                        </div>--%>
                     </div>
                 </div>
                 <br />
-                <div class="row">
-                    <%--<div class="form-group">
-                        <label class="col-md-12" style="border: thin inset #000000; text-align: center;">
-                            Traffic Violation Details
-                        </label>
-                    </div>
-                    <br />--%>
+                <%-- <div class="row">
                     <div class="form-group">
                         <label class="col-md-2">
                             Vehicle Type<span class="errMsg">*</span>
@@ -278,8 +271,8 @@
                         </div>
                     </div>
                 </div>
-                <br />
-                <div class="row">
+                <br />--%>
+                <%-- <div class="row">
                     <div class="form-group">
                         <label class="col-md-2">
                             Vehicle Make<span class="errMsg">*</span>
@@ -297,7 +290,7 @@
                         </div>
                     </div>
                 </div>
-                <br />
+                <br />--%>
                 <div class="row">
                     <div class="form-group">
                         <label class="col-md-2">
@@ -307,23 +300,23 @@
                             <asp:TextBox ID="txtPoliceStation" CssClass="form-control" runat="server" />
                             <span class="errMsg"></span>
                         </div>
-                        <label class="col-md-2">
+                        <%--<label class="col-md-2">
                             Location<span class="errMsg">*</span>
                         </label>
                         <div class="col-md-4">
                             <asp:TextBox ID="txtLocation" CssClass="form-control" runat="server" />
                             <span class="errMsg"></span>
-                        </div>
+                        </div>--%>
                     </div>
                 </div>
                 <br />
-                <div class="row">
+                <%--<div class="row">
                     <div class="form-group">
                         <label class="col-md-6">
                             List of Pending E-Challan
                         </label>
                     </div>
-                </div>
+                </div>--%>
                 <div class="row">
                     <div class="panel-body">
                         <asp:GridView runat="server" ID="gvListOfPendingEchallan" CssClass="table table-hover table-striped" AutoGenerateColumns="False" CellPadding="4" border="1" Style="border-collapse: collapse;" GridLines="None" ShowHeaderWhenEmpty="True">
@@ -372,14 +365,13 @@
                     </div>
                 </div>
                 <br />
-                <div class="row">
+
+              <%--  <div class="row">
                     <div class="form-group">
                         <label class="col-md-2">
                             Motor Vehicle Acts<span class="errMsg">*</span>
                         </label>
                         <div class="col-md-4">
-                            <%--<asp:ListBox ID="lstMVAct" CssClass="form-control" runat="server" SelectionMode="Multiple">
-                            </asp:ListBox>--%>
                             <asp:HiddenField ID="hdnMVActs" ClientIDMode="Static" runat="server" />
                             <asp:TextBox ID="txtMVActs" CssClass="form-control" ClientIDMode="Static" onkeyup="validate(this.id, 'Enter MV Act', '');" runat="server" />
                             <span class="errMsg"></span>
@@ -390,7 +382,9 @@
                         <label class="col-md-3">Total Amount</label>
                         <label id="lblTotalAmount" class="col-md-1"></label>
                     </div>
-                </div>
+                </div>--%>
+
+
                 <br />
                 <div class="row">
                     <div class="form-group">

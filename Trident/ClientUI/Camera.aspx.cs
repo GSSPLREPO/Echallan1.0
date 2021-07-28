@@ -350,6 +350,14 @@ namespace Trident.ClientUI
                             txtIp.Text = dtResult.Rows[0][CameraBO.CAMERA_IpAddress].ToString();
                             txtLatitude.Text = dtResult.Rows[0][CameraBO.CAMERA_Latitude].ToString();
                             txtLongitude.Text = dtResult.Rows[0][CameraBO.CAMERA_Logitude].ToString();
+
+                            BindUnits();
+                            ddlUnit.SelectedValue = dtResult.Rows[0]["UnitID"].ToString();
+                            BindPoliceStation(Convert.ToInt32(dtResult.Rows[0]["UnitID"].ToString()));
+                            ddlPs.SelectedValue= dtResult.Rows[0]["PoliceStationID"].ToString();
+                            BindPoints(Convert.ToInt32(dtResult.Rows[0]["PoliceStationID"].ToString()));
+                            ddlPoints.SelectedValue = (dtResult.Rows[0]["PointId"].ToString());
+
                             ControlVisibility(false, true);
                         }
                     }

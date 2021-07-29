@@ -195,9 +195,15 @@ namespace Trident.ClientUI
                     objCameraBo.CreatedBy = Convert.ToInt32(Session[ApplicationSession.USERID]);
 
                     //generateCameraPID
-
-
                     objResultInsertion = new CameraBL().Camera_Insert(objCameraBo);
+
+                    /// API Response Message from Database
+                    /// 
+                    ApplicationResult objAPIResponse = new ApplicationResult();
+                    objAPIResponse = new CameraBL().APIResponseMessage("generateCameraPID");
+
+                    /// API Response Message Code
+
                     if (objResultInsertion != null)
                     {
                         if (objResultInsertion.resultDT.Rows.Count > 0)

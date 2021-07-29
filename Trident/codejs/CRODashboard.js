@@ -108,7 +108,7 @@ $("#btnSubmit1").click(function (e) {
 
     $.ajax({
         type: 'Post',
-        url: '/CRODashboard/InsertAPIData',
+        url: '../ClientUI/CRODashboard.aspx//InsertAPIData',
         data: '{Id:' + $('input[id$=hfOrganisationId]').val() + '}',
         //data: JSON.stringify(MainData),
         dataType: 'json',

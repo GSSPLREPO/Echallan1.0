@@ -358,7 +358,7 @@ namespace Trident.ClientUI
 
         #region For API Call
         [WebMethod]
-        public string InsertAPIData( int Id) 
+        public static string InsertAPIData(int Id) 
         {
             return null;
         }

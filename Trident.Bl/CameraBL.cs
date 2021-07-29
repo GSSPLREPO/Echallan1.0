@@ -297,5 +297,31 @@ namespace Trident.BL
         }
 
 
+        #region API Response Message
+        public ApplicationResult APIResponseMessage(string strAPIName)
+        {
+            try
+            {
+                pSqlParameter = new SqlParameter[1];
+
+                pSqlParameter[0] = new SqlParameter("@APIName", SqlDbType.VarChar);
+                pSqlParameter[0].Direction = ParameterDirection.Input;
+                pSqlParameter[0].Value = strAPIName;
+
+                strStoredProcName = "usp_APIResponse_ByAPIName";
+
+                DataTable dtResult = new DataTable();
+                dtResult = Database.ExecuteDataTable(CommandType.StoredProcedure, strStoredProcName, pSqlParameter);
+                ApplicationResult objResults = new ApplicationResult(dtResult);
+                objResults.status = ApplicationResult.CommonStatusType.SUCCESS;
+                return objResults;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
+
     }
 }

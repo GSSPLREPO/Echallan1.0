@@ -354,5 +354,23 @@ namespace Trident.ClientUI
             //string country = gvCRODashboard.SelectedRow.Cells[1].Text;
         }
         #endregion
+
+
+        #region For API Call
+        [WebMethod]
+        public string InsertAPIData( int Id) 
+        {
+            return null;
+        }
+        #endregion
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            Control control = new Control();
+            GridView gvTemp = new GridView();
+
+            
+
+        }
     }
 }

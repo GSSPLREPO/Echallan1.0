@@ -47,6 +47,8 @@
                 <div class="box-body no-padding">
                     <div id="divCRODashboard"></div>
                     <br />
+                    <button type="button" id="btnSubmit1" class="btn btn-info" style="margin-top: 50px;">Submit</button>
+                    <asp:Button  runat="server" ID="btnSubmit" OnClick="btnSubmit_Click"/>
                 </div>
             </div>
             <div class="panel-body">
@@ -98,8 +100,8 @@
     <script src="../codejs/CRODashboard.js"></script>
     <script type="text/javascript">
 
-        $(document).ready(function () {
-            GridBindCRO();
-        });
+        //$(document).ready(function () {
+        //    GridBindCRO();
+        //});
     </script>
 </asp:Content>

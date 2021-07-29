@@ -358,19 +358,13 @@ namespace Trident.ClientUI
 
         #region For API Call
         [WebMethod]
-        public static string InsertAPIData(int Id) 
+        public static string InsertAPIData(List<ChallanDataBO> objData) 
+       // public static string InsertAPIData(int Id)
         {
             return null;
         }
         #endregion
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
-        {
-            Control control = new Control();
-            GridView gvTemp = new GridView();
-
-            
-
-        }
+        
     }
 }

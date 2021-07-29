@@ -74,7 +74,7 @@ function BindCRO(data) {
 $("#btnSubmit1").click(function (e) {
     alert('In');
 
-    var MainData = new Array();
+    var ChallanDataBO = new Array();
     var cnt = 0;
     $("#gvCRODashboard TBODY TR").each(function () {
         var row = $(this);
@@ -93,7 +93,7 @@ $("#btnSubmit1").click(function (e) {
 
         var Datachk = row.find('td:eq(3) input').is(':checked');
 
-        Data.Chacked = Datachk;
+        //Data.Chacked = Datachk;
 
         //alert();
         if (Datachk === true) {
@@ -101,16 +101,19 @@ $("#btnSubmit1").click(function (e) {
             Data.ViolationDateTime = row.find("TD").eq(0).html();
             Data.VehiclePlateNo = row.find("TD").eq(1).html();
             //Data.FixReaderCode = row.find("TD").eq(3).html();
+            Data.LPImage = row.find("TD").eq(2).html();;
+           
             alert(Data.ViolationDateTime + 't');
-            MainData.push(Data);
+            ChallanDataBO.push(Data);
         }
     });
-
+    debugger;
     $.ajax({
         type: 'Post',
-        url: '../ClientUI/CRODashboard.aspx//InsertAPIData',
-        data: '{Id:' + $('input[id$=hfOrganisationId]').val() + '}',
-        //data: JSON.stringify(MainData),
+        url: '../ClientUI/CRODashboard.aspx/InsertAPIData',
+       //data: '{Id:' + $('input[id$=hfOrganisationId]').val() + '}',
+        //data: JSON.stringify(ChallanDataBO),
+        data: '{objData:' + JSON.stringify(ChallanDataBO) + '}',
         dataType: 'json',
         contentType: 'application/json',
         success: function (responce) {

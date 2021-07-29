@@ -20,8 +20,8 @@
                 </div>
             </div>
             <div class="panel-body">
-                <div class="col-md-12" style="text-align: center;">
-                    <asp:Label ID="lblMsg" runat="server" CssClass="message" Visible="False"></asp:Label>
+                <div class="col-md-12" style="text-align: center; color:red">
+                    <asp:Label ID="lblMsg" runat="server" CssClass="message"  Visible="False"></asp:Label>
                 </div>
                 <div id="divGrid" class="row" runat="server">
                     <asp:GridView runat="server" ID="gvCamera" CssClass="table table-striped" AutoGenerateColumns="False" GridLines="None" OnRowCommand="gvCamera_RowCommand" OnPreRender="gvCamera_PreRender">

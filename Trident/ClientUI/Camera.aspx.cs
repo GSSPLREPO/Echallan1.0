@@ -175,17 +175,7 @@ namespace Trident.ClientUI
 
                 string strMessage = string.Empty;
 
-                // Staging URL
-                var isStaging = System.Configuration.ConfigurationSettings.AppSettings["IsStagingURL"];
-                dynamic client;
-                if (isStaging == "true")
-                {
-                    client = new Staging.TMSeChallanImplClient();
-                }
-                else
-                {
-                    client = new ITMSeChallanImplService.TMSeChallanImplClient();
-                }
+                
 
 
                 if (ViewState["Mode"].ToString() == "Save")
@@ -197,10 +187,7 @@ namespace Trident.ClientUI
                     //generateCameraPID
                     objResultInsertion = new CameraBL().Camera_Insert(objCameraBo);
 
-                    /// API Response Message from Database
-                    /// 
-                    ApplicationResult objAPIResponse = new ApplicationResult();
-                    objAPIResponse = new CameraBL().APIResponseMessage("generateCameraPID");
+                    
 
                     /// API Response Message Code
 
@@ -213,17 +200,7 @@ namespace Trident.ClientUI
                             lblMsg.Visible = true;
                             if (camId > 0)
                             {
-                                string res = client.generateCameraPID(camId.ToString(), txtIp.Text, ddlUnit.SelectedValue.ToString(), ddlPs.SelectedValue.ToString(),
-                                     ddlPoints.SelectedValue.ToString(), ddlPoints.SelectedItem.ToString(), txtLatitude.Text, txtLongitude.Text, "", "", "");
-                                if (!res.Contains("cam-000"))
-                                {
-                                    lblMsg.Text = "Could not register camera or you have already registered the camera! Please review given details.";
-                                }
-                                else
-                                {
-                                    lblMsg.Text = "Record saved successfully.";
-									
-                                }
+                                CallEchallanApiForCameraReg(camId.ToString(), "Registered successfully.");
                                 ClearAll();
                                 BindGrid();
                                 ViewState["Mode"] = "Save";
@@ -251,18 +228,7 @@ namespace Trident.ClientUI
                             lblMsg.Visible = true;
                             if (strMessage == "Record updated successfully.")
                             {
-
-                                string res = client.generateCameraPID(ViewState["CameraId"].ToString(), txtIp.Text, ddlUnit.SelectedValue.ToString(), ddlPs.SelectedValue.ToString(),
-                                     ddlPoints.SelectedValue.ToString(), ddlPoints.SelectedValue.ToString(), "", "", "", "", "");
-                                if (!res.Contains("cam-000"))
-                                {
-                                    lblMsg.Text = "Could not register camera or you have already registered the camera! Please review given details.";
-                                }
-                                else
-                                {
-                                    lblMsg.Text = strMessage;
-
-                                }
+                                CallEchallanApiForCameraReg(ViewState["CameraId"].ToString(), "Registration updated successfully.");
                                 ClearAll();
                                 BindGrid();
                                 ViewState["Mode"] = "Save";
@@ -447,6 +413,54 @@ namespace Trident.ClientUI
         }
 
         #endregion
+
+        private void CallEchallanApiForCameraReg(string camId,string message)
+        {
+            // Staging URL
+            var isStaging = System.Configuration.ConfigurationSettings.AppSettings["IsStagingURL"];
+            dynamic client;
+            if (isStaging == "true")
+            {
+                client = new Staging.TMSeChallanImplClient();
+            }
+            else
+            {
+                client = new ITMSeChallanImplService.TMSeChallanImplClient();
+            }
+            lblMsg.Text = "";
+            /// API Response Message from Database
+            /// 
+            ApplicationResult objAPIResponse = new ApplicationResult();
+            objAPIResponse = new CameraBL().APIResponseMessage("generateCameraPID");
+
+            string res = client.generateCameraPID(camId, txtIp.Text, ddlUnit.SelectedValue.ToString(), ddlPs.SelectedValue.ToString(),
+                                     ddlPoints.SelectedValue.ToString(), ddlPoints.SelectedItem.ToString(), txtLatitude.Text, txtLongitude.Text, "", "", "");
+            for(int i = 0; i < objAPIResponse.resultDT.Rows.Count; i++)
+            {
+                if(objAPIResponse.resultDT.Rows[i][2].ToString().Contains(res.Split('|')[0]))
+                {
+                    if (objAPIResponse.resultDT.Rows[i][3].ToString().Contains("Success"))
+                    {
+                        lblMsg.Text = txtName.Text + " : " + message;
+                        return;
+                    }
+                    else
+                    {
+                        lblMsg.Text = txtName.Text + " : " + objAPIResponse.resultDT.Rows[i][3].ToString();
+                        return;
+                    }
+                }
+            }
+
+            //if (!res.Contains("cam-000"))
+            //{
+            //    lblMsg.Text = "Could not register camera or you have already registered the camera! Please review given details.";
+            //}
+            //else
+            //{
+            //    lblMsg.Text = "Record saved successfully.";
+            //}
+        }
 
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
         {

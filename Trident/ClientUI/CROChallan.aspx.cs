@@ -58,6 +58,8 @@ namespace Trident.ClientUI
                     var Plate = stringarr[2];
                     var ViolationDate = stringarr[3];
                     var Camera = stringarr[4];
+
+
                     var PoliceStation = stringarr[5];
                     var JsonFilePath = stringarr[6];
                     hdnJsonFilePath.Value = JsonFilePath;

@@ -31,8 +31,7 @@
                         <div class="panel-heading">
                             <div class="col-md-10">
                                 <h4>
-                                    <asp:Label ID="lblHeading" runat="server" Text="CRO Dashboard"></asp:Label>
-                                </h4>
+                                    <asp:Label ID="lblHeading" runat="server" Text="Violation List"></asp:Label></h4>
                             </div>
                             <div class="pull-right col-md-1">
                                 <%--<input id="id_search" type="text" placeholder="Search" onkeydown="return (event.keyCode!=13);" />--%>

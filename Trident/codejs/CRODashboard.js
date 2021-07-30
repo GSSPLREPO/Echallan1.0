@@ -14,9 +14,7 @@ $(document).ready(function () {
 
 
 function CheckAll() {
-    // alert('hi');
     $('#chckCheckAll').click(function (e) {
-        //  alert('hi');
         var table = $(e.target).closest('#gvCRODashboard');
         $('td input:checkbox', table).prop('checked', this.checked);
     });
@@ -57,10 +55,11 @@ function BindCRO(data) {
             //'<tbody>' + '<tr onclick="EditRowSelect(' + data.Result[i].FinalString.replace(/\\/g, "\\\\") + ')">' +
             '<tbody>' + '<tr>' +
             //'<td align="left" valign="top" style="width:50px;">' + data.Result[i].SRNo + '</td>' +
-            '<td align="left" valign="top" style="width:60px;">' + data.Result[i].DateTime + '</td>' +
-            '<td align="left" valign="top" style="width:80px;">' + data.Result[i].LPlate + '</td>' +
-            '<td align="center" valign="top" style="width:20px;"><img src=' + data.Result[i].LPImage + ' Id="id" alt="" width="100px" height="100px" style="height:auto;cursor:pointer;" onclick="EditRowSelect(' + data.Result[i].FinalString.replace(/\\/g, "\\\\") + ')"></td>' +
-            '<td align="center" valign="top" style="width:20px;"><input type="checkbox" id="IsChecked_' + i + '"></td>' +
+            '<td align="left" valign="top" style="width:20%;">' + data.Result[i].DateTime + '</td>' +
+            '<td align="left" valign="top" style="width:30%;">' + data.Result[i].LPlate + '</td>' +
+            '<td align="center" valign="top" style="width:30%;"><img src=' + data.Result[i].LPImage + ' Id="id" alt="" width="100px" height="100px" style="height:auto;cursor:pointer;" onclick="EditRowSelect(' + data.Result[i].FinalString.replace(/\\/g, "\\\\") + ')"></td>' +
+            '<td align="center" valign="top" style="width:20%;"><input type="checkbox" id="IsChecked_' + i + '"></td>' +
+            '<td align="left" valign="top" style="width:1%; display:none;">' + data.Result[i].FinalString.replace(/\\/g, "\\\\").split('$')[6] + '</td>' +
             '</tr>';
     }
     gvUnit = header + rows + '</tbody></table>';
@@ -71,9 +70,7 @@ function BindCRO(data) {
 }
 
 
-$("#btnSubmit1").click(function (e) {
-    alert('In');
-
+$("#saveEchallan").click(function (e) {
     var ChallanDataBO = new Array();
     var cnt = 0;
     $("#gvCRODashboard TBODY TR").each(function () {
@@ -101,13 +98,11 @@ $("#btnSubmit1").click(function (e) {
             Data.ViolationDateTime = row.find("TD").eq(0).html();
             Data.VehiclePlateNo = row.find("TD").eq(1).html();
             //Data.FixReaderCode = row.find("TD").eq(3).html();
-            Data.LPImage = row.find("TD").eq(2).html();;
-           
-            alert(Data.ViolationDateTime + 't');
+            Data.LPImage = row.find("TD").eq(2).html();
+            Data.JsonFilePath = row.find("TD").eq(4).html();
             ChallanDataBO.push(Data);
         }
     });
-    debugger;
     $.ajax({
         type: 'Post',
         url: '../ClientUI/CRODashboard.aspx/InsertAPIData',
@@ -115,22 +110,19 @@ $("#btnSubmit1").click(function (e) {
         //data: JSON.stringify(ChallanDataBO),
         data: '{objData:' + JSON.stringify(ChallanDataBO) + '}',
         dataType: 'json',
-        contentType: 'application/json',
-        success: function (responce) {
-            //alert(responce);
-
-            if (responce !== null) {
-                var i = 0;
-                //document.getElementById("divEntryList").style.display = "block";
-
-                //$.each(responce, function (data, value) {
-                //    i += 1;
-                //    var rowdata = '<tr><td> ' + i + '</td> <td> ' + value.GIOTCode + '</td> <td> ' + value.MaterialCode + '</td> <td> ' + value.FixReaderCode + '</td> <td> ' + value.TimeStamp + '</td> <td><input type="checkbox" id="IsChecked_' + i + '"></td>  <td> ' + value.RFIDCode + '</td></tr>';
-                //    $("#tblData tbody").append(rowdata);
-                //});
-
-                return null;
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+            if (data.d[0] != null) {
+                if (data.d == "success") {
+                    location.reload();
+                } else {
+                    alert(data.d);
+                }
+                //data = $.parseJSON(data.d);
+                //BindCRO(data);
             }
+        }, failure: function (response) {
+            alert('Opps!Something went Wrong.Contact Your Administrator.');
         }
     });
 });

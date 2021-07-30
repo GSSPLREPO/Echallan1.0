@@ -323,5 +323,56 @@ namespace Trident.BL
         }
         #endregion
 
+        #region Insert Challan Bridge 
+        /// <summary>
+        /// To Insert details of User in User table
+        /// Created By : Chintan, 10-10-2019
+        /// Modified By :
+        /// </summary>
+        /// <param name="objUserBO"></param>
+        /// <returns></returns>
+        public ApplicationResult ChallanBridge_Insert(string cameraId, DateTime timestamp, 
+                string regNumber, string violationImage, string jsonFileName)
+        {
+            try
+            {
+                pSqlParameter = new SqlParameter[5];
+
+
+                pSqlParameter[0] = new SqlParameter("@CameraId", SqlDbType.VarChar);
+                pSqlParameter[0].Direction = ParameterDirection.Input;
+                pSqlParameter[0].Value = cameraId;
+
+                pSqlParameter[1] = new SqlParameter("@TimeStamp", SqlDbType.DateTime);
+                pSqlParameter[1].Direction = ParameterDirection.Input;
+                pSqlParameter[1].Value = timestamp;
+
+                pSqlParameter[2] = new SqlParameter("@RegistrationNumber", SqlDbType.VarChar);
+                pSqlParameter[2].Direction = ParameterDirection.Input;
+                pSqlParameter[2].Value = regNumber;
+
+                pSqlParameter[3] = new SqlParameter("@ViolationImage", SqlDbType.NVarChar);
+                pSqlParameter[3].Direction = ParameterDirection.Input;
+                pSqlParameter[3].Value = violationImage;
+
+                pSqlParameter[4] = new SqlParameter("@JsonFileName", SqlDbType.NVarChar);
+                pSqlParameter[4].Direction = ParameterDirection.Input;
+                pSqlParameter[4].Value = jsonFileName;
+
+                sSql = "usp_ChallanBridge_Insert";
+                DataTable dtResult = new DataTable();
+                dtResult = Database.ExecuteDataTable(CommandType.StoredProcedure, sSql, pSqlParameter);
+                ApplicationResult objResults = new ApplicationResult(dtResult);
+                objResults.status = ApplicationResult.CommonStatusType.SUCCESS;
+                return objResults;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        #endregion
+
     }
 }

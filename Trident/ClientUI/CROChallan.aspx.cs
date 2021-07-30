@@ -16,7 +16,7 @@ using Newtonsoft.Json;
 using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Collections;
-
+using Trident.BL;
 
 namespace Trident.ClientUI
 {
@@ -25,6 +25,9 @@ namespace Trident.ClientUI
         #region Declaration
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private Controls objControls = new Controls();
+        static string jsonFilePath="";
+        static string violationPath = "";
+        static DateTime ViolationDateTime;
         #endregion
 
         #region Page Base
@@ -55,22 +58,25 @@ namespace Trident.ClientUI
                 {
                     var stringarr = strFinalString.Split('$');
                     var PlateImages = stringarr[1];
+                    violationPath = PlateImages;
                     var Plate = stringarr[2];
-                    var ViolationDate = stringarr[3];
+                    DateTime ViolationDate =Convert.ToDateTime(stringarr[3]);
+                    ViolationDateTime = ViolationDate;
                     var Camera = stringarr[4];
-
+                    txtVehicleNo.Text = Plate;
 
                     var PoliceStation = stringarr[5];
                     var JsonFilePath = stringarr[6];
                     hdnJsonFilePath.Value = JsonFilePath;
+                    jsonFilePath = JsonFilePath;
                     var ScreenShots = stringarr[7].Split('^').Count();
                     var ContextImage = stringarr[8];
                     hdnScreenShots.Value = stringarr[7];
                     imgPlate.ImageUrl = PlateImages;
                     imgContextImage.ImageUrl = ContextImage;
-                    txtSearchVehicleNo.Text = Plate;
-                    txtDateTimeOfViolation.Text = ViolationDate;
-                    txtPoliceStation.Text = PoliceStation;
+                    //txtSearchVehicleNo.Text = Plate;
+                    txtDateTimeOfViolation.Text = ViolationDate.ToString();
+                    //txtPoliceStation.Text = PoliceStation;
                     //txtLocation.Text = Camera;
                     //txtDueDate.Text = DateTime.Now.AddDays(Convert.ToInt32(Session["DueDays"])).ToShortDateString();
                     hdnCount.Value = ScreenShots.ToString();
@@ -102,75 +108,139 @@ namespace Trident.ClientUI
         }
 
         [WebMethod]
-        public static string SaveChallan(ChallanBO challanBO, List<ChallanOffenseBO> listChallanOffenseBO)
+        public static string SaveChallan(string vehNumber)
         {
             try
             {
-                challanBO.IsDeleted = false;
-                challanBO.CreatedBy = Convert.ToInt32(HttpContext.Current.Session["USERID"].ToString());
-                challanBO.CreatedDate = DateTime.UtcNow.AddHours(5.5);
-                challanBO.LastModifiedBy = Convert.ToInt32(HttpContext.Current.Session["USERID"].ToString());
-                challanBO.LastModifiedDate = DateTime.UtcNow.AddHours(5.5);
-                challanBO.IsManual = 0;
 
-                DataTable dtChallanOffense = new DataTable();
-                dtChallanOffense.Columns.Add("ChallanId", typeof(Int32));
-                dtChallanOffense.Columns.Add("OffenseId", typeof(Int32));
-                dtChallanOffense.Columns.Add("MVActIds", typeof(string));
-                dtChallanOffense.Columns.Add("Count", typeof(Int32));
-                dtChallanOffense.Columns.Add("Amount", typeof(decimal));
-                dtChallanOffense.Columns.Add("IsDeleted", typeof(bool));
-                dtChallanOffense.Columns.Add("CreatedBy", typeof(Int32));
-                dtChallanOffense.Columns.Add("CreatedDate", typeof(DateTime));
-                dtChallanOffense.Columns.Add("LastModifiedBy", typeof(Int32));
-                dtChallanOffense.Columns.Add("LastModifiedDate", typeof(DateTime));
+                string message = "";
 
-                foreach (var challanOffenseBO in listChallanOffenseBO)
-                {
-                    DataRow drChallanOffense = dtChallanOffense.NewRow();
-                    drChallanOffense["OffenseId"] = challanOffenseBO.OffencesId;
-                    drChallanOffense["MVActIds"] = challanOffenseBO.MVActIds;
-                    drChallanOffense["Count"] = challanOffenseBO.Count;
-                    drChallanOffense["Amount"] = challanOffenseBO.Amount;
-                    drChallanOffense["IsDeleted"] = false;
-                    drChallanOffense["CreatedBy"] = Convert.ToInt32(HttpContext.Current.Session["USERID"].ToString());
-                    drChallanOffense["CreatedDate"] = DateTime.UtcNow.AddHours(5.5);
-                    drChallanOffense["LastModifiedBy"] = Convert.ToInt32(HttpContext.Current.Session["USERID"].ToString());
-                    drChallanOffense["LastModifiedDate"] = DateTime.UtcNow.AddHours(5.5);
+                //int index = data.LPImage.ToString().IndexOf(".jpg");
+                //string violationPath = data.LPImage.ToString().Substring(10, index - 6);
 
-                    dtChallanOffense.Rows.Add(drChallanOffense);
-                }
+                var jsonFileName = jsonFilePath.Split('\\').Where(k => k.Contains(".json")).FirstOrDefault();
 
-                ApplicationResult objResult = new CROChallanBL().CROChallan_Insert(challanBO, dtChallanOffense);
+                var destPath = System.Configuration.ConfigurationSettings.AppSettings["DestinationPath"];
+                string strDestFilePath = destPath;
+
+                ApplicationResult objResult = new CameraBL().ChallanBridge_Insert("4494940152", ViolationDateTime,
+                        vehNumber, violationPath, jsonFileName);
                 if (objResult != null)
                 {
-                    if (objResult.resultDT.Rows.Count == 0)
+                    if (objResult.resultDT.Rows.Count > 0)
                     {
-                        //DatabaseTransaction.RollbackTransation();
-                        return null;
+                        var isStaging = System.Configuration.ConfigurationSettings.AppSettings["IsStagingURL"];
+                        dynamic client;
+                        if (isStaging == "true")
+                        {
+                            client = new Staging.TMSeChallanImplClient();
+                        }
+                        else
+                        {
+                            client = new ITMSeChallanImplService.TMSeChallanImplClient();
+                        }
+
+                        // call the Echallan API
+                        //var res = new Staging.TMSeChallanImplClient();
+                        string res = client.generateChallan("7", objResult.resultDT.Rows[0][2].ToString(), "", "10.10.10.10", "", "", "", ViolationDateTime.ToString(), "", vehNumber, "", "26", "", "",
+                                "", "", "", "", "", "", ImageToBase64(HttpContext.Current.Server.MapPath(violationPath)));
+                        if (res.Contains("eCh-000"))
+                        {
+                            SetAccessRights(jsonFilePath);
+                            SetAccessRights(strDestFilePath);
+                            strDestFilePath = strDestFilePath + jsonFileName;
+                            System.IO.File.Move(jsonFilePath, strDestFilePath);
+                            message = "success";
+                        }
+                        else
+                        {
+                            // pop up message
+                            ApplicationResult objAPIResponse = new ApplicationResult();
+                            objAPIResponse = new CameraBL().APIResponseMessage("generateChallan");
+                            for (int i = 0; i < objAPIResponse.resultDT.Rows.Count; i++)
+                            {
+                                if (objAPIResponse.resultDT.Rows[i][2].ToString().Contains(res.Split('|')[0]))
+                                {
+                                    if (objAPIResponse.resultDT.Rows[i][3].ToString().Contains("Success"))
+                                    {
+                                        message = "success";
+                                    }
+                                    else
+                                    {
+                                        message = vehNumber + " : " + objAPIResponse.resultDT.Rows[i][3].ToString();
+                                        return JsonConvert.SerializeObject(message);
+                                    }
+                                }
+                            }
+                        }
                     }
-                    challanBO.Id = Convert.ToInt32(objResult.resultDT.Rows[0]["Id"].ToString());
-                    challanBO.ChallanNo = objResult.resultDT.Rows[0]["ChallanNo"].ToString();
-
-                    //gasBillMBO.GasBillID = Convert.ToInt32(gasBillResultM.resultDT.Rows[0]["GasBillID"]);
-                    //gasBillMBO.GasBillNo = gasBillResultM.resultDT.Rows[0]["GasBillNo"].ToString();
-                    //HttpContext.Current.Session["RemarkCRDR"] = gasBillMBO.RemarkForCRDR;//gasBillResultM.resultDT.Rows[0]["RemarkForCRDR"] != null ? gasBillResultM.resultDT.Rows[0]["RemarkForCRDR"].ToString() : "";
-
-                    //DatabaseTransaction.CommitTransation();
-
-                    string jsonFilePath = challanBO.JSONFilePath;
-                    var strFile = challanBO.JSONFilePath.Split('\\')[2];
-
-                    //string strDestFilePath = @"C:\inetpub\wwwroot\aspnet_client\JSONFiles\";
-                    string strDestFilePath = @"C:\inetpub\";
-
-                    SetAccessRights(jsonFilePath);
-                    SetAccessRights(strDestFilePath);
-                    strDestFilePath = strDestFilePath + strFile;
-                    System.IO.File.Move(jsonFilePath, strDestFilePath);
-
-                    return JsonConvert.SerializeObject(challanBO);
                 }
+                return JsonConvert.SerializeObject(message);
+                //challanBO.IsDeleted = false;
+                //challanBO.CreatedBy = Convert.ToInt32(HttpContext.Current.Session["USERID"].ToString());
+                //challanBO.CreatedDate = DateTime.UtcNow.AddHours(5.5);
+                //challanBO.LastModifiedBy = Convert.ToInt32(HttpContext.Current.Session["USERID"].ToString());
+                //challanBO.LastModifiedDate = DateTime.UtcNow.AddHours(5.5);
+                //challanBO.IsManual = 0;
+
+                //DataTable dtChallanOffense = new DataTable();
+                //dtChallanOffense.Columns.Add("ChallanId", typeof(Int32));
+                //dtChallanOffense.Columns.Add("OffenseId", typeof(Int32));
+                //dtChallanOffense.Columns.Add("MVActIds", typeof(string));
+                //dtChallanOffense.Columns.Add("Count", typeof(Int32));
+                //dtChallanOffense.Columns.Add("Amount", typeof(decimal));
+                //dtChallanOffense.Columns.Add("IsDeleted", typeof(bool));
+                //dtChallanOffense.Columns.Add("CreatedBy", typeof(Int32));
+                //dtChallanOffense.Columns.Add("CreatedDate", typeof(DateTime));
+                //dtChallanOffense.Columns.Add("LastModifiedBy", typeof(Int32));
+                //dtChallanOffense.Columns.Add("LastModifiedDate", typeof(DateTime));
+
+                //foreach (var challanOffenseBO in listChallanOffenseBO)
+                //{
+                //    DataRow drChallanOffense = dtChallanOffense.NewRow();
+                //    drChallanOffense["OffenseId"] = challanOffenseBO.OffencesId;
+                //    drChallanOffense["MVActIds"] = challanOffenseBO.MVActIds;
+                //    drChallanOffense["Count"] = challanOffenseBO.Count;
+                //    drChallanOffense["Amount"] = challanOffenseBO.Amount;
+                //    drChallanOffense["IsDeleted"] = false;
+                //    drChallanOffense["CreatedBy"] = Convert.ToInt32(HttpContext.Current.Session["USERID"].ToString());
+                //    drChallanOffense["CreatedDate"] = DateTime.UtcNow.AddHours(5.5);
+                //    drChallanOffense["LastModifiedBy"] = Convert.ToInt32(HttpContext.Current.Session["USERID"].ToString());
+                //    drChallanOffense["LastModifiedDate"] = DateTime.UtcNow.AddHours(5.5);
+
+                //    dtChallanOffense.Rows.Add(drChallanOffense);
+                //}
+
+                //ApplicationResult objResult = new CROChallanBL().CROChallan_Insert(challanBO, dtChallanOffense);
+                //if (objResult != null)
+                //{
+                //    if (objResult.resultDT.Rows.Count == 0)
+                //    {
+                //        //DatabaseTransaction.RollbackTransation();
+                //        return null;
+                //    }
+                //    challanBO.Id = Convert.ToInt32(objResult.resultDT.Rows[0]["Id"].ToString());
+                //    challanBO.ChallanNo = objResult.resultDT.Rows[0]["ChallanNo"].ToString();
+
+                //    //gasBillMBO.GasBillID = Convert.ToInt32(gasBillResultM.resultDT.Rows[0]["GasBillID"]);
+                //    //gasBillMBO.GasBillNo = gasBillResultM.resultDT.Rows[0]["GasBillNo"].ToString();
+                //    //HttpContext.Current.Session["RemarkCRDR"] = gasBillMBO.RemarkForCRDR;//gasBillResultM.resultDT.Rows[0]["RemarkForCRDR"] != null ? gasBillResultM.resultDT.Rows[0]["RemarkForCRDR"].ToString() : "";
+
+                //    //DatabaseTransaction.CommitTransation();
+
+                //    string jsonFilePath = challanBO.JSONFilePath;
+                //    var strFile = challanBO.JSONFilePath.Split('\\')[2];
+
+                //    //string strDestFilePath = @"C:\inetpub\wwwroot\aspnet_client\JSONFiles\";
+                //    string strDestFilePath = @"C:\inetpub\";
+
+                //    SetAccessRights(jsonFilePath);
+                //    SetAccessRights(strDestFilePath);
+                //    strDestFilePath = strDestFilePath + strFile;
+                //    System.IO.File.Move(jsonFilePath, strDestFilePath);
+
+                //    return JsonConvert.SerializeObject(challanBO);
+                //}
             }
             catch (Exception ex)
             {
@@ -216,7 +286,7 @@ namespace Trident.ClientUI
         //            {
         //                objControl.BindDropDown_ListBox(objResult.resultDT, ddlVehicleType, "VehicleType", "Id");
         //            }
-                   
+
         //        }
         //    }
         //    catch (Exception ex)
@@ -281,5 +351,11 @@ namespace Trident.ClientUI
             Response.Redirect("../ClientUI/CRODashboard.aspx", false);
         }
         #endregion
+
+        private static string ImageToBase64(string path)
+        {
+            byte[] imageBytes = System.IO.File.ReadAllBytes(path);
+            return (Convert.ToBase64String(imageBytes));
+        }
     }
 }

@@ -1,6 +1,4 @@
-﻿
-
-<%@ Page Title="" Language="C#" MasterPageFile="~/MainMaster/MainMaster.Master" AutoEventWireup="true" CodeBehind="CRODashboard.aspx.cs" EnableEventValidation="false"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MainMaster/MainMaster.Master" AutoEventWireup="true" CodeBehind="CRODashboard.aspx.cs" EnableEventValidation="false"
     Inherits="Trident.ClientUI.CRODashboard" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
@@ -33,7 +31,8 @@
                         <div class="panel-heading">
                             <div class="col-md-10">
                                 <h4>
-                                    <asp:Label ID="lblHeading" runat="server" Text="CRO Dashboard"></asp:Label></h4>
+                                    <asp:Label ID="lblHeading" runat="server" Text="CRO Dashboard"></asp:Label>
+                                </h4>
                             </div>
                             <div class="pull-right col-md-1">
                                 <%--<input id="id_search" type="text" placeholder="Search" onkeydown="return (event.keyCode!=13);" />--%>
@@ -47,7 +46,7 @@
                 <div class="box-body no-padding">
                     <div id="divCRODashboard"></div>
                     <br />
-                    <button type="button" id="btnSubmit1" class="btn btn-info" style="margin-top: 50px;">Submit</button>
+                    <button type="button" id="saveEchallan" class="btn btn-info" style="margin-top: 50px;">Submit</button>
                     <%--<asp:Button  runat="server" ID="btnSubmit" OnClick="btnSubmit_Click"/>--%>
                 </div>
             </div>

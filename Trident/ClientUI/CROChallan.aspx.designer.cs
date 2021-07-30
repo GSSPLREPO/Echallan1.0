@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Trident.ClientUI {
-    
-    
-    public partial class CROChallan {
-        
+namespace Trident.ClientUI
+{
+
+
+    public partial class CROChallan
+    {
+
         /// <summary>
         /// lblHeading control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Trident.ClientUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblHeading;
-        
+
         /// <summary>
         /// btnBack control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Trident.ClientUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBack;
-        
+
         /// <summary>
         /// imgPlate control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Trident.ClientUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgPlate;
-        
+
         /// <summary>
         /// imgContextImage control.
         /// </summary>
@@ -47,16 +49,25 @@ namespace Trident.ClientUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgContextImage;
-        
+
         /// <summary>
-        /// txtSearchVehicleNo control.
+        /// txtVehicleNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchVehicleNo;
-        
+        protected global::System.Web.UI.WebControls.TextBox txtVehicleNo;
+
+        /// <summary>
+        /// RequiredFieldValidator11 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator11;
+
         /// <summary>
         /// txtDateTimeOfViolation control.
         /// </summary>
@@ -65,16 +76,7 @@ namespace Trident.ClientUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDateTimeOfViolation;
-        
-        /// <summary>
-        /// txtPoliceStation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPoliceStation;
-        
+
         /// <summary>
         /// hdnTotalPendingAmount control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace Trident.ClientUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnTotalPendingAmount;
-        
+
         /// <summary>
         /// hdnOffense control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace Trident.ClientUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnOffense;
-        
+
         /// <summary>
         /// hdnHeadOfficeId control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace Trident.ClientUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnHeadOfficeId;
-        
+
         /// <summary>
         /// hdnJsonFilePath control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace Trident.ClientUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnJsonFilePath;
-        
+
         /// <summary>
         /// hdnPendingChallanIds control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace Trident.ClientUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnPendingChallanIds;
-        
+
         /// <summary>
         /// hdnScreenShots control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace Trident.ClientUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnScreenShots;
-        
+
         /// <summary>
         /// hdnSc control.
         /// </summary>
@@ -137,7 +139,7 @@ namespace Trident.ClientUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnSc;
-        
+
         /// <summary>
         /// hdnCount control.
         /// </summary>

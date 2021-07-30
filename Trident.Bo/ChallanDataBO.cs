@@ -17,9 +17,14 @@ namespace Trident.Bo
             get; set;
         }
 
-        public string ViolationDateTime
+        public DateTime ViolationDateTime
         {
             get; set;
         }
+        public string JsonFilePath
+        {
+            get; set;
+        }
+        
     }
 }

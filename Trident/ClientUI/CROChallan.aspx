@@ -145,10 +145,10 @@
                                  <span class="errMsg">*</span>
                         </label>
                         <div class="col-md-4">
-                            <asp:TextBox ID="txtSearchVehicleNo" Width="350px" CssClass="form-control" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtVehicleNo" Width="350px" CssClass="form-control" runat="server"></asp:TextBox>
                             <span class="errMsg"></span>
-                            <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="txtSearchVehicleNo"
-                                SetFocusOnError="true" ErrorMessage="*" CssClass="message" ValidationGroup="Save"></asp:RequiredFieldValidator>--%>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="txtVehicleNo"
+                                SetFocusOnError="true" ErrorMessage="*" CssClass="message" ValidationGroup="Save"></asp:RequiredFieldValidator>
                         </div>
                         <div class="col-md-2">
                             <%--<asp:Button ID="btnGo" runat="server" Text="Go" class="btn btn-primary" Width="40px" ValidationGroup="Save" />--%>
@@ -291,25 +291,7 @@
                     </div>
                 </div>
                 <br />--%>
-                <div class="row">
-                    <div class="form-group">
-                        <label class="col-md-2">
-                            Police Station<span class="errMsg">*</span>
-                        </label>
-                        <div class="col-md-4">
-                            <asp:TextBox ID="txtPoliceStation" CssClass="form-control" runat="server" />
-                            <span class="errMsg"></span>
-                        </div>
-                        <%--<label class="col-md-2">
-                            Location<span class="errMsg">*</span>
-                        </label>
-                        <div class="col-md-4">
-                            <asp:TextBox ID="txtLocation" CssClass="form-control" runat="server" />
-                            <span class="errMsg"></span>
-                        </div>--%>
-                    </div>
-                </div>
-                <br />
+                
                 <%--<div class="row">
                     <div class="form-group">
                         <label class="col-md-6">

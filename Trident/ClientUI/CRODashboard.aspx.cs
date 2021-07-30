@@ -19,6 +19,7 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Trident.Bl;
+using Trident.BL;
 using Trident.Bo;
 using Trident.Common;
 
@@ -79,8 +80,9 @@ namespace Trident.ClientUI
                 //DirectoryInfo infoImages = new DirectoryInfo(HostingEnvironment.MapPath(@"~\PlateImages\"));
                 //var imageFileName = infoImages.GetFiles().OrderByDescending(p => p.CreationTime).FirstOrDefault() != null ? infoImages.GetFiles().OrderByDescending(p => p.CreationTime).FirstOrDefault().ToString().Split('.') : null;
                 List<string> strCRODashboard = new List<string>();
+                var directoryPath = System.Configuration.ConfigurationSettings.AppSettings["DirectoryPath"];
                 //DirectoryInfo infoJson = new DirectoryInfo(@"R:\RLVD DATA\");
-                DirectoryInfo infoJson = new DirectoryInfo(@"C:\Genetec\");
+                DirectoryInfo infoJson = new DirectoryInfo(directoryPath);
                 List<FileInfo> objList;
 
                 //if (imageFileName != null)
@@ -358,13 +360,93 @@ namespace Trident.ClientUI
 
         #region For API Call
         [WebMethod]
-        public static string InsertAPIData(List<ChallanDataBO> objData) 
-       // public static string InsertAPIData(int Id)
+        public static string InsertAPIData(List<ChallanDataBO> objData)
         {
-            return null;
+            try
+            {
+                string message = "";
+                foreach (var data in objData)
+                {
+                    int index = data.LPImage.ToString().IndexOf(".jpg");
+                    string violationPath = data.LPImage.ToString().Substring(10, index - 6);
+
+                    string jsonFilePath = data.JsonFilePath;
+                    var jsonFileName = jsonFilePath.Split('\\').Where(k => k.Contains(".json")).FirstOrDefault();
+
+                    var destPath = System.Configuration.ConfigurationSettings.AppSettings["DestinationPath"];
+                    string strDestFilePath = destPath;
+
+                    ApplicationResult objResult = new CameraBL().ChallanBridge_Insert("4494940152", data.ViolationDateTime,
+                            data.VehiclePlateNo, violationPath, jsonFileName);
+                    if (objResult != null)
+                    {
+                        if (objResult.resultDT.Rows.Count > 0)
+                        {
+                            var isStaging = System.Configuration.ConfigurationSettings.AppSettings["IsStagingURL"];
+                            dynamic client;
+                            if (isStaging == "true")
+                            {
+                                client = new Staging.TMSeChallanImplClient();
+                            }
+                            else
+                            {
+                                client = new ITMSeChallanImplService.TMSeChallanImplClient();
+                            }
+
+                            // call the Echallan API
+                            //var res = new Staging.TMSeChallanImplClient();
+                            string res = client.generateChallan("7", objResult.resultDT.Rows[0][2].ToString(), "", "10.10.10.10", "", "", "", data.ViolationDateTime.ToString(), "", data.VehiclePlateNo, "", "26", "", "",
+                                    "", "", "", "", "", "", ImageToBase64(HttpContext.Current.Server.MapPath(violationPath)));
+                            if (res.Contains("eCh-000"))
+                            {
+                                SetAccessRights(jsonFilePath);
+                                SetAccessRights(strDestFilePath);
+                                strDestFilePath = strDestFilePath + jsonFileName;
+                                System.IO.File.Move(jsonFilePath, strDestFilePath);
+                                message = "success";
+                            }
+                            else
+                            {
+                                // pop up message
+                                ApplicationResult objAPIResponse = new ApplicationResult();
+                                objAPIResponse = new CameraBL().APIResponseMessage("generateChallan");
+                                for (int i = 0; i < objAPIResponse.resultDT.Rows.Count; i++)
+                                {
+                                    if (objAPIResponse.resultDT.Rows[i][2].ToString().Contains(res.Split('|')[0]))
+                                    {
+                                        if (objAPIResponse.resultDT.Rows[i][3].ToString().Contains("Success"))
+                                        {
+                                            message = "success";
+                                        }
+                                        else
+                                        {
+                                            message = data.VehiclePlateNo + " : " + objAPIResponse.resultDT.Rows[i][3].ToString();
+                                            return JsonConvert.SerializeObject(message);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                return JsonConvert.SerializeObject(message);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return "";
         }
         #endregion
 
-        
+
+        private static string ImageToBase64(string path)
+        {
+            byte[] imageBytes = System.IO.File.ReadAllBytes(path);
+            return (Convert.ToBase64String(imageBytes));
+        }
+
+
     }
 }

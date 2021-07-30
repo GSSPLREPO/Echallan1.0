@@ -166,72 +166,72 @@ function OffenseValidation() {
 function FormValidation() {
     var count = 0;
 
-    if ($("[id*=txtSearchVehicleNo]").val() == "") {
-        $("[id*=txtSearchVehicleNo]").next($('span')).text('Enter Vehicle No');
+    if ($("[id*=txtVehicleNo]").val() == "") {
+        $("[id*=txtVehicleNo]").next($('span')).text('Enter Vehicle No');
         count++;
     }
-    if ($("[id*=txtSurname]").val() == "") {
-        $("[id*=txtSurname]").next($('span')).text('Enter Last Name');
-        count++;
-    }
-    if ($("[id*=txtFirstName]").val() == "") {
-        $("[id*=txtFirstName]").next($('span')).text('Enter First Name');
-        count++;
-    }
-    if ($("[id*=txtMiddleName]").val() == "") {
-        $("[id*=txtMiddleName]").next($('span')).text('Enter Middle Name');
-        count++;
-    }
-    if ($("[id*=txtAddress]").val() == "") {
-        $("[id*=txtAddress]").next($('span')).text('Enter Address');
-        count++;
-    }
-    if ($("[id*=txtCity]").val() == "") {
-        $("[id*=txtCity]").next($('span')).text('Enter City');
-        count++;
-    }
-    if ($("[id*=txtState]").val() == "") {
-        $("[id*=txtState]").next($('span')).text('Enter State');
-        count++;
-    }
-    if ($("[id*=txtPostalCode]").val() == "") {
-        $("[id*=txtPostalCode]").next($('span')).text('Enter Postal Code');
-        count++;
-    }
-    if ($("[id*=txtDateTimeOfViolation]").val() == "") {
-        $("[id*=txtDateTimeOfViolation]").parent().next($('span')).text('Enter Violation Date');
-        count++;
-    }
-    if ($("[id*=txtDueDate]").val() == "") {
-        $("[id*=txtDueDate]").parent().next($('span')).text('Enter Due Date');
-        count++;
-    }
-    if ($("[id*=txtVehicleModel]").val() == "") {
-        $("[id*=txtVehicleModel]").next($('span')).text('Enter Vehicle Model');
-        count++;
-    }
-    if ($("[id*=txtVehicleMake]").val() == "") {
-        $("[id*=txtVehicleMake]").next($('span')).text('Enter Vehicle Make');
-        count++;
-    }
-    if ($("[id*=txtNoOfViolations]").val() == "") {
-        $("[id*=txtNoOfViolations]").next($('span')).text('Enter No of Violation');
-        count++;
-    }
-    if ($("[id*=txtPoliceStation]").val() == "") {
-        $("[id*=txtPoliceStation]").next($('span')).text('Enter Police Station');
-        count++;
-    }
-    if ($("[id*=txtLocation]").val() == "") {
-        $("[id*=txtLocation]").next($('span')).text('Enter Location');
-        count++;
-    }
-    if ($("[id*=gvOffenses] tr:has(td)").length == 0) {
-        $("[id*=grdMsg]").text('You have to enter at least One Offense');
-        count++;
-    } else {
-        $("[id*=grdMsg]").text('');
-    }
+    //if ($("[id*=txtSurname]").val() == "") {
+    //    $("[id*=txtSurname]").next($('span')).text('Enter Last Name');
+    //    count++;
+    //}
+    //if ($("[id*=txtFirstName]").val() == "") {
+    //    $("[id*=txtFirstName]").next($('span')).text('Enter First Name');
+    //    count++;
+    //}
+    //if ($("[id*=txtMiddleName]").val() == "") {
+    //    $("[id*=txtMiddleName]").next($('span')).text('Enter Middle Name');
+    //    count++;
+    //}
+    //if ($("[id*=txtAddress]").val() == "") {
+    //    $("[id*=txtAddress]").next($('span')).text('Enter Address');
+    //    count++;
+    //}
+    //if ($("[id*=txtCity]").val() == "") {
+    //    $("[id*=txtCity]").next($('span')).text('Enter City');
+    //    count++;
+    //}
+    //if ($("[id*=txtState]").val() == "") {
+    //    $("[id*=txtState]").next($('span')).text('Enter State');
+    //    count++;
+    //}
+    //if ($("[id*=txtPostalCode]").val() == "") {
+    //    $("[id*=txtPostalCode]").next($('span')).text('Enter Postal Code');
+    //    count++;
+    //}
+    //if ($("[id*=txtDateTimeOfViolation]").val() == "") {
+    //    $("[id*=txtDateTimeOfViolation]").parent().next($('span')).text('Enter Violation Date');
+    //    count++;
+    //}
+    //if ($("[id*=txtDueDate]").val() == "") {
+    //    $("[id*=txtDueDate]").parent().next($('span')).text('Enter Due Date');
+    //    count++;
+    //}
+    //if ($("[id*=txtVehicleModel]").val() == "") {
+    //    $("[id*=txtVehicleModel]").next($('span')).text('Enter Vehicle Model');
+    //    count++;
+    //}
+    //if ($("[id*=txtVehicleMake]").val() == "") {
+    //    $("[id*=txtVehicleMake]").next($('span')).text('Enter Vehicle Make');
+    //    count++;
+    //}
+    //if ($("[id*=txtNoOfViolations]").val() == "") {
+    //    $("[id*=txtNoOfViolations]").next($('span')).text('Enter No of Violation');
+    //    count++;
+    //}
+    //if ($("[id*=txtPoliceStation]").val() == "") {
+    //    $("[id*=txtPoliceStation]").next($('span')).text('Enter Police Station');
+    //    count++;
+    //}
+    //if ($("[id*=txtLocation]").val() == "") {
+    //    $("[id*=txtLocation]").next($('span')).text('Enter Location');
+    //    count++;
+    //}
+    //if ($("[id*=gvOffenses] tr:has(td)").length == 0) {
+    //    $("[id*=grdMsg]").text('You have to enter at least One Offense');
+    //    count++;
+    //} else {
+    //    $("[id*=grdMsg]").text('');
+    //}
     //alert(count);
     if (count > 0)
         return false;
@@ -318,40 +318,42 @@ $("#btnSave").click(function () {
             frmI++;
         });
         challanBO.TotalAmount = amount;
-        if ($('.lblChecked').length > 0) {
-            var SelectedSnap = $('.lblChecked').children().attr('src');
-            challanBO.SelectedSnapPath = SelectedSnap;
+        //if ($('.lblChecked').length > 0) {
+        //    var SelectedSnap = $('.lblChecked').children().attr('src');
+        //    challanBO.SelectedSnapPath = SelectedSnap;
 
 
             $.ajax({
                 type: 'POST',
                 url: '../clientUI/CROChallan.aspx/SaveChallan',
-                data: "{challanBO:" + JSON.stringify(challanBO) + ",listChallanOffenseBO:" + JSON.stringify(listChallanOffenseBO) + "}",
+                data: "{vehNumber:" + JSON.stringify($("[id*=txtVehicleNo]").val()) + "}",
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
                 success: function (data) {
-                    if (data.d != null) {
-                        data = $.parseJSON(data.d);
-                        $('#loadingDiv').addClass("hidden");
-                        //$('input[id$=hdnDomesticGasBillId]').val(data.GasBillID);
-                        //$('input[id$=hdnSavedBillNo]').val('Bill No : ' + data.GasBillNo + ' Saved Successfully.');
-                        if (data.ChallanNo != '0') {
-                            alert('Challan : ' + data.ChallanNo + ' has been created Successfully.');
+                    if (data.d[0] != null) {
+                        if (data.d == "success") {
                             window.location.href = "../ClientUI/CRODashboard.aspx"
                         } else {
-                            alert('Challan has been already generated for today.');
+                            alert(data.d);
                         }
-                        //$('input[id$=hdnMode]').val('SavedSuccess');
-                        //$('[id*=btnBindBillPrint]').click();
-
                     }
+                    //if (data.d != null) {
+                    //    data = $.parseJSON(data.d);
+                    //    $('#loadingDiv').addClass("hidden");
+                    //    if (data.ChallanNo != '0') {
+                    //        alert('Challan : ' + data.ChallanNo + ' has been created Successfully.');
+                    //        window.location.href = "../ClientUI/CRODashboard.aspx"
+                    //    } else {
+                    //        alert('Challan has been already generated for today.');
+                    //    }
+                    //}
                 }, failure: function (response) {
                     alert('Opps!Something went Wrong.Contact Your Administrator.');
                     $('#loadingDiv').addClass("hidden");
                 }
             });
-        } else {
-            alert('Please Select atlease one screenshot');
-        }
+        //} else {
+        //    alert('Please Select atlease one screenshot');
+        //}
     }
 });

@@ -252,7 +252,6 @@
                         </div>--%>
                     </div>
                 </div>
-                <br />
                 <%-- <div class="row">
                     <div class="form-group">
                         <label class="col-md-2">
@@ -313,7 +312,6 @@
                 <%--    </div>
                 </div>--%>
 
-                <br />
                 <div class="row">
                     <%--<div class="form-group">
                         <label class="col-md-12" style="border: thin inset #000000; text-align: center;">
@@ -346,7 +344,6 @@
                         </div>--%>
                     </div>
                 </div>
-                <br />
 
               <%--  <div class="row">
                     <div class="form-group">
@@ -367,7 +364,7 @@
                 </div>--%>
 
 
-                <br />
+               <%-- <br />
                 <div class="row">
                     <div class="form-group">
                         <label id="grdMsg" class="col-md-12 errMsg">
@@ -380,7 +377,7 @@
                         <div id="divListOfOffenses">
                         </div>
                     </div>
-                </div>
+                </div>--%>
                 <%--<br />
                 <div class="row">
                     <div class="form-group">
@@ -392,7 +389,6 @@
                         </div>
                     </div>
                 </div>--%>
-                <br />
                 <%--<div class="row">
                     <div class="form-group">
                         <label class="col-md-2">

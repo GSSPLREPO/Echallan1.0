@@ -82,6 +82,7 @@ $("#saveEchallan").click(function (e) {
 
     if (cnt === 0) {
         alert("Please select checkbox first before submit.");
+        return;
     }
 
     $("#gvCRODashboard TBODY TR").each(function () {

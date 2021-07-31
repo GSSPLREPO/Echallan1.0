@@ -33,56 +33,23 @@
                                 <h4>
                                     <asp:Label ID="lblHeading" runat="server" Text="Violation List"></asp:Label></h4>
                             </div>
-                            <div class="pull-right col-md-1">
-                                <%--<input id="id_search" type="text" placeholder="Search" onkeydown="return (event.keyCode!=13);" />--%>
-                                <%--<asp:Button runat="server" ID="btnAddNew" CssClass="btn btn-primary" Style="margin-right: 20px;" Text="Add New" OnClick="btnAddNew_Click"/>--%>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="box box-primary divGrid" id="divGrid">
                 <div class="box-body no-padding">
                     <div id="divCRODashboard"></div>
-                    <br />
-                    <button type="button" id="saveEchallan" class="btn btn-info" style="margin-top: 50px;">Submit</button>
-                    <%--<asp:Button  runat="server" ID="btnSubmit" OnClick="btnSubmit_Click"/>--%>
+                    <div class="row pull-right" style="margin-right:10%">
+                        <div class="form-group">
+                            <button type="button" id="saveEchallan" class="btn btn-info" style="height:50%">Submit</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <%--<div class="col-md-12" style="text-align: center;">
-                        <asp:Label ID="lblMsg" runat="server" CssClass="message" Visible="False"></asp:Label>
-                    </div>--%>
-                    <%--  <div id="divCRODashboard"></div>
-                        <br />--%>
-                    <%-- <div class="box box-primary" id="divGrid" runat="server">
-                        <div class="box-body no-padding">
-                            <asp:GridView runat="server" ID="gvCRODashboard" CssClass="table table-striped" AutoGenerateColumns="False"
-                                OnRowDataBound="gvCRODashboard_RowDataBound" OnSelectedIndexChanged="gvCRODashboard_SelectedIndexChanged" GridLines="None">
-                                <Columns>
-                                    <asp:BoundField DataField="VehicleId" HeaderText="Id">
-                                        <HeaderStyle HorizontalAlign="Left" VerticalAlign="Top" Width="20px"
-                                            CssClass="hidden" />
-                                        <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" Wrap="false" CssClass="hidden" />
-                                        <FooterStyle CssClass="hidden" />
-                                    </asp:BoundField>
-                                    <asp:BoundField DataField="SRNo" HeaderText="Sr No.">
-                                        <HeaderStyle HorizontalAlign="Left" VerticalAlign="Top" Width="320px" />
-                                        <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" Width="320px" />
-                                    </asp:BoundField>
-                                    <asp:BoundField DataField="LicensePlate" HeaderText="License Plate">
-                                        <HeaderStyle HorizontalAlign="Left" VerticalAlign="Top" Width="75px" />
-                                        <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" Width="75px" />
-                                    </asp:BoundField>
-                                    <asp:BoundField DataField="PlateImage" HeaderText="Plate Image">
-                                        <HeaderStyle Width="50px" HorizontalAlign="Right" VerticalAlign="Top" />
-                                        <ItemStyle HorizontalAlign="Right" Width="50px" VerticalAlign="Top" Wrap="true" />
-                                    </asp:BoundField>
-                                </Columns>
-                            </asp:GridView>
-                        </div>
-                    </div>--%>
                     <div class="form-group">
                         <div class="col-md-12 col-md-offset-10">
                             <asp:HiddenField ID="hfEmployeeId" runat="server" ClientIDMode="Static" />
@@ -97,9 +64,5 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptDeclaration" runat="server">
     <script src="../codejs/CRODashboard.js"></script>
     <script type="text/javascript">
-
-        //$(document).ready(function () {
-        //    GridBindCRO();
-        //});
-    </script>
+</script>
 </asp:Content>

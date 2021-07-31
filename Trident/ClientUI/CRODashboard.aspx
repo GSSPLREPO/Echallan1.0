@@ -41,7 +41,7 @@
             <div class="box box-primary divGrid" id="divGrid">
                 <div class="box-body no-padding">
                     <div id="divCRODashboard"></div>
-                    <div class="row pull-right" style="margin-right:10%">
+                    <div class="row pull-right" style="margin-right:5%">
                         <div class="form-group">
                             <button type="button" id="saveEchallan" class="btn btn-info" style="height:50%">Submit</button>
                         </div>
@@ -64,5 +64,5 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptDeclaration" runat="server">
     <script src="../codejs/CRODashboard.js"></script>
     <script type="text/javascript">
-</script>
+    </script>
 </asp:Content>

@@ -331,7 +331,7 @@ $("#btnSave").click(function () {
                 dataType: 'json',
                 success: function (data) {
                     if (data.d[0] != null) {
-                        if (data.d == "success") {
+                        if ($.parseJSON(data.d) =="success") {
                             window.location.href = "../ClientUI/CRODashboard.aspx"
                         } else {
                             alert(data.d);

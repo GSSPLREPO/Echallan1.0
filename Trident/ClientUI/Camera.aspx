@@ -26,6 +26,10 @@
                 <div id="divGrid" class="row" runat="server">
                     <asp:GridView runat="server" ID="gvCamera" CssClass="table table-striped" AutoGenerateColumns="False" GridLines="None" OnRowCommand="gvCamera_RowCommand" OnPreRender="gvCamera_PreRender">
                         <Columns>
+                             <asp:BoundField DataField="Id" HeaderText="Id" HeaderStyle-CssClass="text-left">
+                                <HeaderStyle Width="100px" HorizontalAlign="Left" VerticalAlign="Top" />
+                                <ItemStyle HorizontalAlign="Left" Width="100px" VerticalAlign="Top" Wrap="true" />
+                            </asp:BoundField>
                             <asp:BoundField DataField="Name" HeaderText="Name" HeaderStyle-CssClass="text-left">
                                 <HeaderStyle Width="200px" HorizontalAlign="Left" VerticalAlign="Top" />
                                 <ItemStyle HorizontalAlign="Left" Width="200px" VerticalAlign="Top" Wrap="true" />

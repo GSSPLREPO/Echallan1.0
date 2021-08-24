@@ -25,6 +25,10 @@ namespace Trident.Bo
         {
             get; set;
         }
-        
+        public string CameraName
+        {
+            get; set;
+        }
+
     }
 }

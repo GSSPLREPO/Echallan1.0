@@ -304,7 +304,7 @@ namespace Trident.ClientUI
         {
             try
             {
-                ViewState["CameraId"] = Convert.ToInt32(e.CommandArgument.ToString());
+                ViewState["CameraId"] = Convert.ToInt32(e.CommandArgument.ToString().Replace("AG",""));
                 lblMsg.Visible = false;
                 ClearAll();
                 lblMsg.Visible = false;

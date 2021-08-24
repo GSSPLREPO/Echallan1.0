@@ -162,9 +162,9 @@ namespace Trident.ClientUI
                 {
                     var file = strfile.Name;
                     Violation objViolation = new Violation();
-
+                    var directoryPath = System.Configuration.ConfigurationSettings.AppSettings["DirectoryPath"];
                     //string FilePath = @"R:\RLVD DATA\" + file;
-                    string FilePath = @"C:\Genetec\" + file;
+                    string FilePath = directoryPath + file;
                     StreamReader reader;
                     string strJsonData = "";
                     if (File.Exists(FilePath))
@@ -369,6 +369,8 @@ namespace Trident.ClientUI
                 {
                     int index = data.LPImage.ToString().IndexOf(".jpg");
                     string violationPath = data.LPImage.ToString().Substring(10, index - 6);
+                    string camId = data.CameraName.Split('-')[0];
+                    string camName = data.CameraName.Split('-')[1];
 
                     string jsonFilePath = data.JsonFilePath;
                     var jsonFileName = jsonFilePath.Split('\\').Where(k => k.Contains(".json")).FirstOrDefault();
@@ -376,7 +378,7 @@ namespace Trident.ClientUI
                     var destPath = System.Configuration.ConfigurationSettings.AppSettings["DestinationPath"];
                     string strDestFilePath = destPath;
 
-                    ApplicationResult objResult = new CameraBL().ChallanBridge_Insert("4494940152", data.ViolationDateTime,
+                    ApplicationResult objResult = new CameraBL().ChallanBridge_Insert(camId, data.ViolationDateTime,
                             data.VehiclePlateNo, violationPath, jsonFileName);
                     if (objResult != null)
                     {
@@ -395,8 +397,10 @@ namespace Trident.ClientUI
 
                             // call the Echallan API
                             //var res = new Staging.TMSeChallanImplClient();
-                            string res = client.generateChallan("7", objResult.resultDT.Rows[0][2].ToString(), "", "10.10.10.10", "", "", "", data.ViolationDateTime.ToString(), "", data.VehiclePlateNo, "", "26", "", "",
-                                    "", "", "", "", "", "", ImageToBase64(HttpContext.Current.Server.MapPath(violationPath)));
+                            //string res = client.generateChallan("7", objResult.resultDT.Rows[0][2].ToString(), "", "10.10.10.10", "", "", "", data.ViolationDateTime.ToString(), "", data.VehiclePlateNo, "", "26", "", "",
+                            //        "", "", "", "", "", "", ImageToBase64(HttpContext.Current.Server.MapPath(violationPath)));
+                            string res = client.generateChallan(camId, objResult.resultDT.Rows[0][2].ToString(), camId, "192.168.1.57", "", camId, camId, data.ViolationDateTime.ToString("yyyy-MM-dd hh:mm:ss"), "", data.VehiclePlateNo, "", "26", "", "",
+                                "", "", "", "", "", "", ImageToBase64(HttpContext.Current.Server.MapPath(violationPath)));
                             if (res.Contains("eCh-000"))
                             {
                                 SetAccessRights(jsonFilePath);

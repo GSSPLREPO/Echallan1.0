@@ -60,6 +60,7 @@ function BindCRO(data) {
             '<td align="center" valign="top" style="width:30%;"><img src=' + data.Result[i].LPImage + ' Id="id" alt="" width="100px" height="100px" style="height:auto;cursor:pointer;" onclick="EditRowSelect(' + data.Result[i].FinalString.replace(/\\/g, "\\\\") + ')"></td>' +
             '<td align="center" valign="top" style="width:20%;"><input type="checkbox" id="IsChecked_' + i + '"></td>' +
             '<td align="left" valign="top" style="width:1%; display:none;">' + data.Result[i].FinalString.replace(/\\/g, "\\\\").split('$')[6] + '</td>' +
+            '<td align="left" valign="top" style="width:1%; display:none;">' + data.Result[i].FinalString.split('$')[4] + '</td>' +
             '</tr>';
     }
     gvUnit = header + rows + '</tbody></table>';
@@ -101,6 +102,7 @@ $("#saveEchallan").click(function (e) {
             //Data.FixReaderCode = row.find("TD").eq(3).html();
             Data.LPImage = row.find("TD").eq(2).html();
             Data.JsonFilePath = row.find("TD").eq(4).html();
+            Data.CameraName = row.find("TD").eq(5).html();
             ChallanDataBO.push(Data);
         }
     });
@@ -114,7 +116,7 @@ $("#saveEchallan").click(function (e) {
         contentType: 'application/json; charset=utf-8',
         success: function (data) {
             if (data.d[0] != null) {
-                if (data.d == "success") {
+                if ($.parseJSON(data.d) == "success") {
                     location.reload();
                 } else {
                     alert(data.d);

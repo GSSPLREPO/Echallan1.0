@@ -126,7 +126,7 @@ namespace Trident.ClientUI
                 string camId = camera.Split('-')[0];
                 string camName = camera.Split('-')[1];
 
-                ApplicationResult objResult = new CameraBL().ChallanBridge_Insert("4494940152", ViolationDateTime,
+                ApplicationResult objResult = new CameraBL().ChallanBridge_Insert(camId, ViolationDateTime,
                         vehNumber, violationPath, jsonFileName);
                 if (objResult != null)
                 {

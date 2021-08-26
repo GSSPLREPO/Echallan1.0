@@ -46,39 +46,7 @@
                 </div>
             </div>
             <div class="panel-body">
-                <%--<div class="row">
-                    <div class="col-md-12">
-                        <div class="col-md-2">
-                            From Date :
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtFromDate" ValidationGroup="g1"
-                                SetFocusOnError="True" ErrorMessage="Enter From Date" ForeColor="Red">*</asp:RequiredFieldValidator>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="input-group" id="datetimepicker8">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                <asp:TextBox ID="txtFromDate" CssClass="form-control" runat="server" />
-                                <span class="errMsg"></span>
 
-                            </div>
-                        </div>
-                       
-                        <div class="col-md-2">
-                            To Date :
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtToDate" ValidationGroup="g1"
-                                SetFocusOnError="True" ErrorMessage="Enter To Date" ForeColor="Red">*</asp:RequiredFieldValidator>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="input-group" id="datetimepicker9">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                <asp:TextBox ID="txtToDate" runat="server" CssClass="form-control" />
-                                <span class="errMsg"></span>
-
-                            </div>
-                        </div>
-                       
-                         <asp:Button runat="server" ID="btnGo" Text="Go" CssClass="btn btn-primary pull-right" ValidationGroup="g1" OnClick="btnGo_Click" />
-                    </div>
-                </div>--%>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="col-md-3">
@@ -147,6 +115,20 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            Registration Number :
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class=" col-md-3" id="reg">
+                            <asp:TextBox ID="txtRegNumber" CssClass="form-control" runat="server" />
+                        </div>
+                    </div>
+                </div>
                 <div class="row" style="margin-top: 10px; padding-bottom: 15px;">
                     <div class="col-md-12">
                         <div class="col-md-8">
@@ -162,15 +144,11 @@
                     <asp:GridView runat="server" ID="gvPendingChallanReport" CssClass="table table-hover table-striped"
                         AutoGenerateColumns="False" GridLines="Both" Width="100%" HeaderStyle-Wrap="false" ClientIDMode="Static">
                         <Columns>
-                            <asp:BoundField DataField="SrNo" HeaderText="SrNo" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Center" />
-                            <asp:BoundField DataField="ChallanDate" HeaderText="Challan Date & Time" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Center" />
-                            <asp:BoundField DataField="ChallanNo" HeaderText="Challan ID" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Center" />
-                            <asp:BoundField DataField="TotalAmount" HeaderText="Challan Amt (Rs)" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Center" />
-                            <asp:BoundField DataField="VehiclePlateNo" HeaderText="Vehicle Number" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Center" />
-                            <asp:BoundField DataField="DueDate" HeaderText="Due Date" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Center" />
-                            <asp:BoundField DataField="Name" HeaderText="Prep By" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Center" />
-                            <asp:ImageField AlternateText="LPImage" DataImageUrlField="LPImage" HeaderText="License Plate" ControlStyle-Width="130" ControlStyle-Height = "90"></asp:ImageField>
-                            <asp:ImageField DataImageUrlField="ContextImagePath" HeaderText="Context Image" ControlStyle-Width="130" ControlStyle-Height = "90"></asp:ImageField>
+                            <asp:BoundField DataField="CameraId" HeaderText="Camera" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="TimeStamp" HeaderText="Challan Date & Time" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="AGChallanId" HeaderText="Challan ID" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="RegistrationNumber" HeaderText="Vehicle Number" ItemStyle-Wrap="false" ItemStyle-HorizontalAlign="Center" />
+                            <asp:ImageField AlternateText="ViolationImage" DataImageUrlField="ViolationImage" HeaderText="License Plate" ControlStyle-Width="130" ControlStyle-Height="90"></asp:ImageField>
                         </Columns>
                     </asp:GridView>
                 </div>

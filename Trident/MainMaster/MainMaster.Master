@@ -180,8 +180,8 @@
                                     <div id="row3" class="row" style="width: 400px; font-size: 17px">
                                         <div class="col-md-6" id="InventoryCol2">
                                             <ul id="ReportInventory" class="list-unstyled">
-                                                <%--<li id="PendingChallanReport" style="display: none;"><a href="../Reports/PendingChallanReport.aspx">Pending Challans</a></li>
-                                                    <li id="ApprovedChallanReport" style="display: none;"><a href="../Reports/ApprovedChallanReport.aspx">Approved Challans</a></li>
+                                               <li id="PendingChallanReport" style="display: none;"><a href="../Reports/PendingChallanReport.aspx">Pending Challans</a></li>
+                                                   <%--  <li id="ApprovedChallanReport" style="display: none;"><a href="../Reports/ApprovedChallanReport.aspx">Approved Challans</a></li>
                                                     <li id="PrintedChallanReport" style="display: none;"><a href="../Reports/PrintedChallanReport.aspx">Printed Challans</a></li>
                                                     <li id="DiscardedChallanReport" style="display: none;"><a href="../Reports/DiscardedChallanReport.aspx">Discarded Challans</a></li>--%>
                                             </ul>

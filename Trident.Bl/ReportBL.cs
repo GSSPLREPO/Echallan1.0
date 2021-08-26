@@ -111,6 +111,48 @@ namespace Trident.Bl
         }
         #endregion
 
+        #region Select Pending Challan bridge Details
+        /// <summary>
+        /// To Select Pending Challan Details
+        /// Created By : Bhargav, 09/03/2020
+        /// Modified By :
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
+        public ApplicationResult GetPendingChallanBridgeReport(DateTime fromDate, DateTime toDate, string regNumber)
+        {
+            try
+            {
+                pSqlParameter = new SqlParameter[3];
+
+
+                pSqlParameter[0] = new SqlParameter("@FromDate", SqlDbType.DateTime);
+                pSqlParameter[0].Direction = ParameterDirection.Input;
+                pSqlParameter[0].Value = fromDate;
+
+                pSqlParameter[1] = new SqlParameter("@ToDate", SqlDbType.DateTime);
+                pSqlParameter[1].Direction = ParameterDirection.Input;
+                pSqlParameter[1].Value = toDate;
+
+                pSqlParameter[2] = new SqlParameter("@RegNumber", SqlDbType.NVarChar);
+                pSqlParameter[2].Direction = ParameterDirection.Input;
+                pSqlParameter[2].Value = regNumber;
+
+                sSql = "usp_rpt_PendingChallanBridgeReport";
+                DataTable dtEmployee = new DataTable();
+                dtEmployee = Database.ExecuteDataTable(CommandType.StoredProcedure, sSql, pSqlParameter);
+
+                ApplicationResult objResults = new ApplicationResult(dtEmployee);
+                objResults.status = ApplicationResult.CommonStatusType.SUCCESS;
+                return objResults;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
+
         #region Select Approved Challan Details
         /// <summary>
         /// To Select Approved Challan Details

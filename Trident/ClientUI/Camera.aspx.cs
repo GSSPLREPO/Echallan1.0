@@ -433,7 +433,7 @@ namespace Trident.ClientUI
             ApplicationResult objAPIResponse = new ApplicationResult();
             objAPIResponse = new CameraBL().APIResponseMessage("generateCameraPID");
 
-            string res = client.generateCameraPID(camId, txtIp.Text, ddlUnit.SelectedValue.ToString(), ddlPs.SelectedValue.ToString(),
+            string res = client.generateCameraPID("AG" + camId, txtIp.Text, ddlUnit.SelectedValue.ToString(), ddlPs.SelectedValue.ToString(),
                                      ddlPoints.SelectedValue.ToString(), ddlPoints.SelectedItem.ToString(), txtLatitude.Text, txtLongitude.Text, "", "", "");
             for(int i = 0; i < objAPIResponse.resultDT.Rows.Count; i++)
             {

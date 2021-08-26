@@ -76,7 +76,7 @@ namespace Trident.Reports
                 if (dtFromDateTime <= dtToDateTime)
                 {
                     //string UserName = Convert.ToString(Session[ApplicationSession.Username]);
-                    objResult = new ReportBL().GetPendingChallanReport(dtFromDateTime, dtToDateTime);
+                    objResult = new ReportBL().GetPendingChallanBridgeReport(dtFromDateTime, dtToDateTime,txtRegNumber.Text);
 
                     //objResult.ResultDt.Columns.AddRange(new DataColumn[1] { new DataColumn("UserName") });
                     //objResult.ResultDt.Columns["UserName"].DefaultValue = Convert.ToInt32(HttpContext.Current.Session["USERID"].ToString());
@@ -88,11 +88,9 @@ namespace Trident.Reports
                     {
                         for (int b = 0; b < objResult.resultDT.Rows.Count; b++)
                         {
-                            string rootLPImgPath = MyRegex.Replace(objResult.resultDT.Rows[b]["LPImage"].ToString(), "~");
-                            string rootContextImgPath = MyRegex.Replace(objResult.resultDT.Rows[b]["ContextImagePath"].ToString(), "~");
+                            string rootLPImgPath = MyRegex.Replace(objResult.resultDT.Rows[b]["ViolationImage"].ToString(), "~");
 
-                            objResult.resultDT.Rows[b]["LPImage"] = rootLPImgPath;
-                            objResult.resultDT.Rows[b]["ContextImagePath"] = rootContextImgPath;
+                            objResult.resultDT.Rows[b]["ViolationImage"] = rootLPImgPath;
                         }
                     }
 

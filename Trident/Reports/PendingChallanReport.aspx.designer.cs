@@ -87,6 +87,15 @@ namespace Trident.Reports
         protected global::System.Web.UI.WebControls.TextBox txtToTime;
 
         /// <summary>
+        /// txtRegNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRegNumber;
+
+        /// <summary>
         /// btnGo control.
         /// </summary>
         /// <remarks>

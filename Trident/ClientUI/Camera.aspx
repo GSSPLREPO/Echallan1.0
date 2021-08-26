@@ -118,7 +118,7 @@
                                 Ip Address<span class="errMsg">*</span>
                             </label>
                             <div class="col-md-4">
-                                <asp:TextBox ID="txtIp" runat="server" CssClass="form-control" TabIndex="3"></asp:TextBox>
+                                <asp:TextBox ID="txtIp" runat="server" CssClass="form-control" TabIndex="3" ToolTip="10.10.10.10" placeholder="000.000.000.000"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtIp" ValidationGroup="g1"
                                     SetFocusOnError="True" ErrorMessage="Enter Ip Adress." ForeColor="Red"></asp:RequiredFieldValidator>
                             </div>
@@ -128,7 +128,7 @@
                                     Latitude<span class="errMsg">*</span>
                                 </label>
                                 <div class="col-md-4">
-                                    <asp:TextBox ID="txtLatitude" runat="server" CssClass="form-control" TabIndex="3"  ></asp:TextBox>
+                                    <asp:TextBox ID="txtLatitude" runat="server" CssClass="form-control" TabIndex="3" placeholder="00.00000"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtLatitude" ValidationGroup="g1"
                                         SetFocusOnError="True" ErrorMessage="Enter Latitude." ForeColor="Red"></asp:RequiredFieldValidator>
                                    
@@ -137,7 +137,7 @@
                                     Longitude<span class="errMsg">*</span>
                                 </label>
                                 <div class="col-md-4">
-                                    <asp:TextBox ID="txtLongitude" runat="server" CssClass="form-control" TabIndex="3" ></asp:TextBox>
+                                    <asp:TextBox ID="txtLongitude" runat="server" CssClass="form-control" TabIndex="3" placeholder="00.00000"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtLongitude" ValidationGroup="g1"
                                         SetFocusOnError="True" ErrorMessage="Enter Logitude." ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>

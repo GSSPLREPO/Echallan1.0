@@ -145,7 +145,7 @@ namespace Trident.ClientUI
 
                         // call the Echallan API
                         //var res = new Staging.TMSeChallanImplClient();
-                        string res = client.generateChallan(camId, objResult.resultDT.Rows[0][2].ToString(), camId, "10.10.10.10", "", camId, camId, ViolationDateTime.ToString("yyyy-MM-dd hh:mm:ss"), "", vehNumber, "", "26", "", "",
+                        string res = client.generateChallan(camId, objResult.resultDT.Rows[0][2].ToString(), camId, "10.10.10.10", "", camId, camId, ViolationDateTime.ToString("yyyy-MM-dd hh:mm:ss"), "", vehNumber, "", "04", "", "",
                                 "", "", "", "", "", "", ImageToBase64(HttpContext.Current.Server.MapPath(violationPath)));
                         if (res.Contains("eCh-000"))
                         {
@@ -153,6 +153,7 @@ namespace Trident.ClientUI
                             SetAccessRights(strDestFilePath);
                             strDestFilePath = strDestFilePath + jsonFileName;
                             System.IO.File.Move(jsonFilePath, strDestFilePath);
+                            new CameraBL().ChalanBridge_Update(Convert.ToInt32(objResult.resultDT.Rows[0][0]), res.Split('|')[1]);
                             message = "success";
                         }
                         else

@@ -374,5 +374,41 @@ namespace Trident.BL
         }
         #endregion
 
+        public ApplicationResult ChalanBridge_Update(int intId, string agChallanId)
+        {
+            try
+            {
+                pSqlParameter = new SqlParameter[2];
+
+                pSqlParameter[0] = new SqlParameter("@Id", SqlDbType.Int);
+                pSqlParameter[0].Direction = ParameterDirection.Input;
+                pSqlParameter[0].Value = intId;
+
+                pSqlParameter[1] = new SqlParameter("@AGChallanId", SqlDbType.NVarChar);
+                pSqlParameter[1].Direction = ParameterDirection.Input;
+                pSqlParameter[1].Value = agChallanId;
+
+                strStoredProcName = "usp_ChallanBridge_UPDATE";
+
+                int iResult = Database.ExecuteNonQuery(CommandType.StoredProcedure, strStoredProcName, pSqlParameter);
+                if (iResult > 0)
+                {
+                    ApplicationResult objResults = new ApplicationResult();
+                    objResults.status = ApplicationResult.CommonStatusType.SUCCESS;
+                    return objResults;
+                }
+                else
+                {
+                    ApplicationResult objResults = new ApplicationResult();
+                    objResults.status = ApplicationResult.CommonStatusType.FAILURE;
+                    return objResults;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

@@ -405,7 +405,7 @@
                 <div class="row">
                     <div class="form-group">
                         <div class="col-md-2 pull-right" style="margin-right: -30px">
-                            <button id="btnSave" type="button" class="btn btn-primary">Save</button>
+                            <button id="btnSave" type="button" class="btn btn-primary">Submit and Generate</button>
                             <%--<asp:Button runat="server" ID="btnCancel" CssClass="btn btn-primary" OnClick="btnBack_Click" Text="Cancel" />--%>
                             <%--<asp:ValidationSummary runat="server" ID="vs1" ValidationGroup="g1" ShowMessageBox="True" ShowSummary="False" />--%>
                         </div>

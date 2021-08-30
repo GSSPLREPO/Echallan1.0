@@ -61,6 +61,7 @@ function BindCRO(data) {
             '<td align="center" valign="top" style="width:20%;"><input type="checkbox" id="IsChecked_' + i + '"></td>' +
             '<td align="left" valign="top" style="width:1%; display:none;">' + data.Result[i].FinalString.replace(/\\/g, "\\\\").split('$')[6] + '</td>' +
             '<td align="left" valign="top" style="width:1%; display:none;">' + data.Result[i].FinalString.split('$')[4] + '</td>' +
+            '<td align="left" valign="top" style="width:1%; display:none;">' + data.Result[i].ContextImage + '</td>' +
             '</tr>';
     }
     gvUnit = header + rows + '</tbody></table>';
@@ -103,6 +104,7 @@ $("#saveEchallan").click(function (e) {
             Data.LPImage = row.find("TD").eq(2).html();
             Data.JsonFilePath = row.find("TD").eq(4).html();
             Data.CameraName = row.find("TD").eq(5).html();
+            Data.ContextImage = row.find("TD").eq(6).html();
             ChallanDataBO.push(Data);
         }
     });

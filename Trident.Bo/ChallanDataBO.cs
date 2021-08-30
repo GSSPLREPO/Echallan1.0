@@ -30,5 +30,10 @@ namespace Trident.Bo
             get; set;
         }
 
+        public string ContextImage
+        {
+            get; set;
+        }
+
     }
 }

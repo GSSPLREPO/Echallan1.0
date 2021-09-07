@@ -29,6 +29,7 @@ namespace Trident.ClientUI
         static string violationPath = "";
         static DateTime ViolationDateTime;
         static string camera = "";
+        static string screenShot = "";
         #endregion
 
         #region Page Base
@@ -71,6 +72,7 @@ namespace Trident.ClientUI
                     hdnJsonFilePath.Value = JsonFilePath;
                     jsonFilePath = JsonFilePath;
                     var ScreenShots = stringarr[7].Split('^').Count();
+                    screenShot = stringarr[7].Split('^')[0];
                     var ContextImage = stringarr[8];
                     hdnScreenShots.Value = stringarr[7];
                     imgPlate.ImageUrl = PlateImages;
@@ -145,8 +147,9 @@ namespace Trident.ClientUI
 
                         // call the Echallan API
                         //var res = new Staging.TMSeChallanImplClient();
+                        var currentImg = CombineImage(HttpContext.Current.Server.MapPath(violationPath), HttpContext.Current.Server.MapPath(screenShot), vehNumber);
                         string res = client.generateChallan(camId, objResult.resultDT.Rows[0][2].ToString(), camId, "10.10.10.10", "", camId, camId, ViolationDateTime.ToString("yyyy-MM-dd hh:mm:ss"), "", vehNumber, "", "04", "", "",
-                                "", "", "", "", "", "", ImageToBase64(HttpContext.Current.Server.MapPath(violationPath)));
+                                "", "", "", "", "", "", ImageToBase64(currentImg));
                         if (res.Contains("eCh-000"))
                         {
                             SetAccessRights(jsonFilePath);
@@ -296,5 +299,35 @@ namespace Trident.ClientUI
             byte[] imageBytes = System.IO.File.ReadAllBytes(path);
             return (Convert.ToBase64String(imageBytes));
         }
+
+        private static string CombineImage(string lprImage, string screenShot, string vehPlateNo)
+        {
+            //String jpg1 = @"D:\Nirmal\Combine\a.jpg";
+            //String jpg2 = @"D:\Nirmal\Combine\b.jpg";
+            String jpg3 = System.Configuration.ConfigurationSettings.AppSettings["DestinationPath"]+ vehPlateNo+".jpg";
+
+            System.Drawing.Image img1 = System.Drawing.Image.FromFile(lprImage);
+            System.Drawing.Image img2 = System.Drawing.Image.FromFile(screenShot);
+
+            int width = img1.Width + img2.Width;
+            int height = Math.Max(img1.Height, img2.Height);
+
+            Bitmap img3 = new Bitmap(width, height);
+            Graphics g = Graphics.FromImage(img3);
+
+            g.Clear(Color.Black);
+            g.DrawImage(img1, new Point(100, 500));
+            g.DrawImage(img2, new Point(300, 0));
+
+            g.Dispose();
+            img1.Dispose();
+            img2.Dispose();
+
+            img3.Save(jpg3, System.Drawing.Imaging.ImageFormat.Jpeg);
+            img3.Dispose();
+
+            return jpg3;
+        }
+
     }
 }

@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -365,12 +366,87 @@ namespace Trident.ClientUI
             try
             {
                 string message = "";
+                //for(int i = 0; i < objData.Count; i++)
+                //{
+                //    int index = objData[i].LPImage.ToString().IndexOf(".jpg");
+                //    string violationPath = objData[i].LPImage.ToString().Substring(10, index - 6);
+                //    //string contextIamgePath = objData[i].ContextImage.ToString().Substring(10, index - 6);
+                //    string camId = objData[i].CameraName.Split('-')[0];
+                //    string camName = objData[i].CameraName.Split('-')[1];
+                //    string screenShot = objData[i].Screenshot.Split('^')[0];
+
+                //    string jsonFilePath = objData[i].JsonFilePath;
+                //    var jsonFileName = jsonFilePath.Split('\\').Where(k => k.Contains(".json")).FirstOrDefault();
+
+                //    var destPath = System.Configuration.ConfigurationSettings.AppSettings["DestinationPath"];
+                //    string strDestFilePath = destPath;
+
+                //    ApplicationResult objResult = new CameraBL().ChallanBridge_Insert(camId, objData[i].ViolationDateTime,
+                //            objData[i].VehiclePlateNo, violationPath, jsonFileName);
+
+                //    if (objResult != null)
+                //    {
+                //        if (objResult.resultDT.Rows.Count > 0)
+                //        {
+                //            var isStaging = System.Configuration.ConfigurationSettings.AppSettings["IsStagingURL"];
+                //            dynamic client;
+                //            if (isStaging == "true")
+                //            {
+                //                client = new Staging.TMSeChallanImplClient();
+                //            }
+                //            else
+                //            {
+                //                client = new ITMSeChallanImplService.TMSeChallanImplClient();
+                //            }
+
+                //            // call the Echallan API
+                //            //var res = new Staging.TMSeChallanImplClient();
+                //            //string res = client.generateChallan("7", objResult.resultDT.Rows[0][2].ToString(), "", "10.10.10.10", "", "", "", data.ViolationDateTime.ToString(), "", data.VehiclePlateNo, "", "26", "", "",
+                //            //        "", "", "", "", "", "", ImageToBase64(HttpContext.Current.Server.MapPath(violationPath)));
+                //            var currentImg = CombineImage(HttpContext.Current.Server.MapPath(violationPath), HttpContext.Current.Server.MapPath(screenShot), objData[i].VehiclePlateNo);
+                //            string res = client.generateChallan(camId, objResult.resultDT.Rows[0][2].ToString(), camId, "192.168.1.57", "", camId, camId, objData[i].ViolationDateTime.ToString("yyyy-MM-dd hh:mm:ss"), "", objData[i].VehiclePlateNo, "", "04", "", "",
+                //                "", "", "", "", "", "", ImageToBase64(currentImg));
+                //            if (res.Contains("eCh-000"))
+                //            {
+                //                SetAccessRights(jsonFilePath);
+                //                SetAccessRights(strDestFilePath);
+                //                strDestFilePath = strDestFilePath + jsonFileName;
+                //                System.IO.File.Move(jsonFilePath, strDestFilePath);
+                //                new CameraBL().ChalanBridge_Update(Convert.ToInt32(objResult.resultDT.Rows[0][0]), res.Split('|')[1]);
+                //                message = "success";
+                //            }
+                //            else
+                //            {
+                //                // pop up message
+                //                ApplicationResult objAPIResponse = new ApplicationResult();
+                //                objAPIResponse = new CameraBL().APIResponseMessage("generateChallan");
+                //                for (int j = 0; j < objAPIResponse.resultDT.Rows.Count; j++)
+                //                {
+                //                    if (objAPIResponse.resultDT.Rows[j][2].ToString().Contains(res.Split('|')[0]))
+                //                    {
+                //                        if (objAPIResponse.resultDT.Rows[j][3].ToString().Contains("Success"))
+                //                        {
+                //                            message = "success";
+                //                        }
+                //                        else
+                //                        {
+                //                            message = objData[i].VehiclePlateNo + " : " + objAPIResponse.resultDT.Rows[j][3].ToString();
+                //                            return JsonConvert.SerializeObject(message);
+                //                        }
+                //                    }
+                //                }
+                //            }
+                //        }
+                //    }
+                //}
                 foreach (var data in objData)
                 {
                     int index = data.LPImage.ToString().IndexOf(".jpg");
                     string violationPath = data.LPImage.ToString().Substring(10, index - 6);
+                    //string contextIamgePath = data.ContextImage.ToString().Substring(10, index - 6);
                     string camId = data.CameraName.Split('-')[0];
                     string camName = data.CameraName.Split('-')[1];
+                    string screenShot = data.Screenshot.Split('^')[0];
 
                     string jsonFilePath = data.JsonFilePath;
                     var jsonFileName = jsonFilePath.Split('\\').Where(k => k.Contains(".json")).FirstOrDefault();
@@ -399,8 +475,9 @@ namespace Trident.ClientUI
                             //var res = new Staging.TMSeChallanImplClient();
                             //string res = client.generateChallan("7", objResult.resultDT.Rows[0][2].ToString(), "", "10.10.10.10", "", "", "", data.ViolationDateTime.ToString(), "", data.VehiclePlateNo, "", "26", "", "",
                             //        "", "", "", "", "", "", ImageToBase64(HttpContext.Current.Server.MapPath(violationPath)));
+                            var currentImg = CombineImage(HttpContext.Current.Server.MapPath(violationPath), HttpContext.Current.Server.MapPath(screenShot), data.VehiclePlateNo);
                             string res = client.generateChallan(camId, objResult.resultDT.Rows[0][2].ToString(), camId, "192.168.1.57", "", camId, camId, data.ViolationDateTime.ToString("yyyy-MM-dd hh:mm:ss"), "", data.VehiclePlateNo, "", "04", "", "",
-                                "", "", "", "", "", "", ImageToBase64(HttpContext.Current.Server.MapPath(violationPath)));
+                                "", "", "", "", "", "", ImageToBase64(currentImg));
                             if (res.Contains("eCh-000"))
                             {
                                 SetAccessRights(jsonFilePath);
@@ -438,7 +515,7 @@ namespace Trident.ClientUI
             }
             catch (Exception ex)
             {
-
+                var a = "";
             }
 
             return "";
@@ -452,6 +529,34 @@ namespace Trident.ClientUI
             return (Convert.ToBase64String(imageBytes));
         }
 
+        private static string CombineImage(string lprImage, string screenShot,string vehPlateNo)
+        {
+            //String jpg1 = @"D:\Nirmal\Combine\a.jpg";
+            //String jpg2 = @"D:\Nirmal\Combine\b.jpg";
+            String jpg3 = System.Configuration.ConfigurationSettings.AppSettings["DestinationPath"] + vehPlateNo + ".jpg";
+
+            System.Drawing.Image img1 = System.Drawing.Image.FromFile(lprImage);
+            System.Drawing.Image img2 = System.Drawing.Image.FromFile(screenShot);
+
+            int width = img1.Width + img2.Width;
+            int height = Math.Max(img1.Height, img2.Height);
+
+            Bitmap img3 = new Bitmap(width, height);
+            Graphics g = Graphics.FromImage(img3);
+
+            g.Clear(Color.Black);
+            g.DrawImage(img1, new Point(100, 500));
+            g.DrawImage(img2, new Point(300, 0));
+
+            g.Dispose();
+            img1.Dispose();
+            img2.Dispose();
+
+            img3.Save(jpg3, System.Drawing.Imaging.ImageFormat.Jpeg);
+            img3.Dispose();
+
+            return jpg3;
+        }
 
     }
 }

@@ -34,6 +34,10 @@ namespace Trident.Bo
         {
             get; set;
         }
+        public string Screenshot
+        {
+            get; set;
+        }
 
     }
 }

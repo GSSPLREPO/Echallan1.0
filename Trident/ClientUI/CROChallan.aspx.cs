@@ -30,6 +30,7 @@ namespace Trident.ClientUI
         static DateTime ViolationDateTime;
         static string camera = "";
         static string screenShot = "";
+        static string contextImg = "";
         #endregion
 
         #region Page Base
@@ -74,6 +75,7 @@ namespace Trident.ClientUI
                     var ScreenShots = stringarr[7].Split('^').Count();
                     screenShot = stringarr[7].Split('^')[0];
                     var ContextImage = stringarr[8];
+                    contextImg = ContextImage;
                     hdnScreenShots.Value = stringarr[7];
                     imgPlate.ImageUrl = PlateImages;
                     imgContextImage.ImageUrl = ContextImage;
@@ -147,7 +149,7 @@ namespace Trident.ClientUI
 
                         // call the Echallan API
                         //var res = new Staging.TMSeChallanImplClient();
-                        var currentImg = CombineImage(HttpContext.Current.Server.MapPath(violationPath), HttpContext.Current.Server.MapPath(screenShot), vehNumber);
+                        var currentImg = CombineImage(HttpContext.Current.Server.MapPath(violationPath), HttpContext.Current.Server.MapPath(screenShot), vehNumber, HttpContext.Current.Server.MapPath(contextImg));
                         string res = client.generateChallan(camId, objResult.resultDT.Rows[0][2].ToString(), camId, "10.10.10.10", "", camId, camId, ViolationDateTime.ToString("yyyy-MM-dd hh:mm:ss"), "", vehNumber, "", "04", "", "",
                                 "", "", "", "", "", "", ImageToBase64(currentImg));
                         if (res.Contains("eCh-000"))
@@ -300,7 +302,7 @@ namespace Trident.ClientUI
             return (Convert.ToBase64String(imageBytes));
         }
 
-        private static string CombineImage(string lprImage, string screenShot, string vehPlateNo)
+        private static string CombineImage(string lprImage, string screenShot, string vehPlateNo, string contextImg)
         {
             //String jpg1 = @"D:\Nirmal\Combine\a.jpg";
             //String jpg2 = @"D:\Nirmal\Combine\b.jpg";
@@ -308,16 +310,18 @@ namespace Trident.ClientUI
 
             System.Drawing.Image img1 = System.Drawing.Image.FromFile(lprImage);
             System.Drawing.Image img2 = System.Drawing.Image.FromFile(screenShot);
+            System.Drawing.Image img4 = System.Drawing.Image.FromFile(contextImg);
 
-            int width = img1.Width + img2.Width;
+            int width = img1.Width + img2.Width + img4.Width;
             int height = Math.Max(img1.Height, img2.Height);
 
             Bitmap img3 = new Bitmap(width, height);
             Graphics g = Graphics.FromImage(img3);
 
             g.Clear(Color.Black);
-            g.DrawImage(img1, new Point(100, 500));
-            g.DrawImage(img2, new Point(300, 0));
+            g.DrawImage(img1, new Point(100, 200));
+            g.DrawImage(img2, new Point(img4.Width + 20, 0));
+            g.DrawImage(img4, new Point(10, 300));
 
             g.Dispose();
             img1.Dispose();

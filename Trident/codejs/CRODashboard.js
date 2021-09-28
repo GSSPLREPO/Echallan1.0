@@ -105,7 +105,7 @@ $("#saveEchallan").click(function (e) {
             Data.LPImage = row.find("TD").eq(2).html();
             Data.JsonFilePath = row.find("TD").eq(4).html();
             Data.CameraName = row.find("TD").eq(5).html();
-            //Data.ContextImage = row.find("TD").eq(6).html();
+            Data.ContextImage = row.find("TD").eq(6).html();
             Data.Screenshot = row.find("TD").eq(7).html();
             ChallanDataBO.push(Data);
         }

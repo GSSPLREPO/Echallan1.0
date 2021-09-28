@@ -447,6 +447,7 @@ namespace Trident.ClientUI
                     string camId = data.CameraName.Split('-')[0];
                     string camName = data.CameraName.Split('-')[1];
                     string screenShot = data.Screenshot.Split('^')[0];
+                    string contextImg = data.ContextImage.ToString();
 
                     string jsonFilePath = data.JsonFilePath;
                     var jsonFileName = jsonFilePath.Split('\\').Where(k => k.Contains(".json")).FirstOrDefault();
@@ -472,10 +473,7 @@ namespace Trident.ClientUI
                             }
 
                             // call the Echallan API
-                            //var res = new Staging.TMSeChallanImplClient();
-                            //string res = client.generateChallan("7", objResult.resultDT.Rows[0][2].ToString(), "", "10.10.10.10", "", "", "", data.ViolationDateTime.ToString(), "", data.VehiclePlateNo, "", "26", "", "",
-                            //        "", "", "", "", "", "", ImageToBase64(HttpContext.Current.Server.MapPath(violationPath)));
-                            var currentImg = CombineImage(HttpContext.Current.Server.MapPath(violationPath), HttpContext.Current.Server.MapPath(screenShot), data.VehiclePlateNo);
+                            var currentImg = CombineImage(HttpContext.Current.Server.MapPath(violationPath), HttpContext.Current.Server.MapPath(screenShot), data.VehiclePlateNo, HttpContext.Current.Server.MapPath(contextImg));
                             string res = client.generateChallan(camId, objResult.resultDT.Rows[0][2].ToString(), camId, "192.168.1.57", "", camId, camId, data.ViolationDateTime.ToString("yyyy-MM-dd hh:mm:ss"), "", data.VehiclePlateNo, "", "04", "", "",
                                 "", "", "", "", "", "", ImageToBase64(currentImg));
                             if (res.Contains("eCh-000"))
@@ -529,24 +527,24 @@ namespace Trident.ClientUI
             return (Convert.ToBase64String(imageBytes));
         }
 
-        private static string CombineImage(string lprImage, string screenShot,string vehPlateNo)
+        private static string CombineImage(string lprImage, string screenShot,string vehPlateNo, string contextImg)
         {
-            //String jpg1 = @"D:\Nirmal\Combine\a.jpg";
-            //String jpg2 = @"D:\Nirmal\Combine\b.jpg";
             String jpg3 = System.Configuration.ConfigurationSettings.AppSettings["DestinationPath"] + vehPlateNo + ".jpg";
 
             System.Drawing.Image img1 = System.Drawing.Image.FromFile(lprImage);
             System.Drawing.Image img2 = System.Drawing.Image.FromFile(screenShot);
+            System.Drawing.Image img4 = System.Drawing.Image.FromFile(contextImg);
 
-            int width = img1.Width + img2.Width;
+            int width = img1.Width + img2.Width + img4.Width;
             int height = Math.Max(img1.Height, img2.Height);
 
             Bitmap img3 = new Bitmap(width, height);
             Graphics g = Graphics.FromImage(img3);
 
             g.Clear(Color.Black);
-            g.DrawImage(img1, new Point(100, 500));
-            g.DrawImage(img2, new Point(300, 0));
+            g.DrawImage(img1, new Point(100, 200));
+            g.DrawImage(img2, new Point(img4.Width + 20, 0));
+            g.DrawImage(img4, new Point(10, 300));
 
             g.Dispose();
             img1.Dispose();

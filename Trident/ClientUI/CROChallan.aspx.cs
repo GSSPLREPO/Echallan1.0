@@ -31,6 +31,7 @@ namespace Trident.ClientUI
         static string camera = "";
         static string screenShot = "";
         static string contextImg = "";
+        private static string userName = "";
         #endregion
 
         #region Page Base
@@ -67,6 +68,7 @@ namespace Trident.ClientUI
                     ViolationDateTime = ViolationDate;
                     camera = stringarr[4];
                     txtVehicleNo.Text = Plate;
+                    userName = Session[ApplicationSession.USERNAME].ToString();
 
                     var PoliceStation = stringarr[5];
                     var JsonFilePath = stringarr[6];
@@ -150,7 +152,7 @@ namespace Trident.ClientUI
                         // call the Echallan API
                         //var res = new Staging.TMSeChallanImplClient();
                         var currentImg = CombineImage(HttpContext.Current.Server.MapPath(violationPath), HttpContext.Current.Server.MapPath(screenShot), vehNumber, HttpContext.Current.Server.MapPath(contextImg));
-                        string res = client.generateChallan(camId, objResult.resultDT.Rows[0][2].ToString(), camId, "10.10.10.10", "", camId, camId, ViolationDateTime.ToString("yyyy-MM-dd hh:mm:ss"), "", vehNumber, "", "04", "", "",
+                        string res = client.generateChallan(camId, objResult.resultDT.Rows[0][2].ToString(), camId, "10.10.10.10", "", camId, userName, ViolationDateTime.ToString("yyyy-MM-dd hh:mm:ss"), "", vehNumber, "", "04", "", "",
                                 "", "", "", "", "", "", ImageToBase64(currentImg));
                         if (res.Contains("eCh-000"))
                         {

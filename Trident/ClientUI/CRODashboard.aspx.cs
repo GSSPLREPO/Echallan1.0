@@ -31,6 +31,7 @@ namespace Trident.ClientUI
         #region Declaration
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private Controls objControls = new Controls();
+        private static string userName = "";
         #endregion
 
         #region Page Base
@@ -56,7 +57,7 @@ namespace Trident.ClientUI
                             HttpContext.Current.Response.Redirect("../UnauthorisedUI/UnauthorisedAccess.aspx");
                         }
                     }
-
+                    userName = Session[ApplicationSession.USERNAME].ToString();
                     hfOrganisationId.Value = Convert.ToInt32(Session[ApplicationSession.ORGANISATIONID]).ToString();
                     hfEmployeeId.Value = Convert.ToInt32(Session[ApplicationSession.EMPLOYEEID]).ToString();
                     // BindCRODashboard();
@@ -474,7 +475,7 @@ namespace Trident.ClientUI
 
                             // call the Echallan API
                             var currentImg = CombineImage(HttpContext.Current.Server.MapPath(violationPath), HttpContext.Current.Server.MapPath(screenShot), data.VehiclePlateNo, HttpContext.Current.Server.MapPath(contextImg));
-                            string res = client.generateChallan(camId, objResult.resultDT.Rows[0][2].ToString(), camId, "192.168.1.57", "", camId, camId, data.ViolationDateTime.ToString("yyyy-MM-dd hh:mm:ss"), "", data.VehiclePlateNo, "", "04", "", "",
+                            string res = client.generateChallan(camId, objResult.resultDT.Rows[0][2].ToString(), camId, "192.168.1.57", "", userName, userName, data.ViolationDateTime.ToString("yyyy-MM-dd hh:mm:ss"), "", data.VehiclePlateNo, "", "04", "", "",
                                 "", "", "", "", "", "", ImageToBase64(currentImg));
                             if (res.Contains("eCh-000"))
                             {
@@ -527,7 +528,7 @@ namespace Trident.ClientUI
             return (Convert.ToBase64String(imageBytes));
         }
 
-        private static string CombineImage(string lprImage, string screenShot,string vehPlateNo, string contextImg)
+        private static string CombineImage(string lprImage, string screenShot, string vehPlateNo, string contextImg)
         {
             String jpg3 = System.Configuration.ConfigurationSettings.AppSettings["DestinationPath"] + vehPlateNo + ".jpg";
 
